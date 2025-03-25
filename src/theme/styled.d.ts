@@ -24,6 +24,7 @@ declare module "styled-components" {
         title: string;
         text: string;
         placeholder: string;
+        grayWhite: string;
       };
     };
     spacing: {

@@ -1,4 +1,4 @@
-import { TextInput } from "@/components";
+import { TextInput, Button } from "@/components";
 import { useTheme } from "styled-components";
 import { SelectInstallments } from "./components/SelectInstallments";
 
@@ -6,7 +6,7 @@ export function CheckoutForm() {
   const { spacing } = useTheme();
 
   return (
-    <div
+    <form
       style={{
         display: "flex",
         flexDirection: "column",
@@ -35,6 +35,12 @@ export function CheckoutForm() {
       <TextInput label="Cupom" width="20rem" placeholder="Insira aqui" />
 
       <SelectInstallments />
-    </div>
+
+      <Button
+        title="Finalizar pagamento"
+        textColor="grayWhite"
+        disabled={false}
+      />
+    </form>
   );
 }

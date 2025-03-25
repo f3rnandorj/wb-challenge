@@ -23,6 +23,7 @@ const theme: DefaultTheme = {
       title: "#151516",
       text: "#666173",
       placeholder: "#C9C5D4",
+      grayWhite: "#FFFFFF",
     },
   },
   spacing: {
