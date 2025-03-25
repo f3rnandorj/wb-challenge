@@ -1,6 +1,12 @@
+import { Page, Text } from "@/components";
 import Head from "next/head";
+import { Column, MainGrid } from "./styles";
+import { useTheme } from "styled-components";
+import Image from "next/image";
+import creditCards from "../assets/creditCards.png";
 
 export default function Home() {
+  const { spacing } = useTheme();
   return (
     <>
       <Head>
@@ -10,9 +16,30 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div>
-        <p>Home</p>
-      </div>
+      <Page canGoBack>
+        <MainGrid>
+          <Column>
+            <div>
+              <Text align="left" style={{ paddingBottom: spacing.s10 }}>
+                Estamos quase lá!
+              </Text>
+
+              <Text style={{ paddingBottom: spacing.s32 }}>
+                Insira seus dados de pagamento abaixo:
+              </Text>
+            </div>
+
+            <Image
+              alt="credit-cards-image"
+              src={creditCards}
+              width={215}
+              height={50}
+            />
+          </Column>
+
+          <Column></Column>
+        </MainGrid>
+      </Page>
     </>
   );
 }

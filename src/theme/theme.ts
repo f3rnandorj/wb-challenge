@@ -40,6 +40,7 @@ const theme: DefaultTheme = {
     s48: "3rem",
     s56: "3.5rem",
     s68: "4.25rem",
+    s72: "4.5rem",
   },
   breakpoints: {
     sm: "40rem", // 640px
