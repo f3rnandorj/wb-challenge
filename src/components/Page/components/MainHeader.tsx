@@ -20,7 +20,13 @@ export function MainHeader({ canGoBack }: Props) {
         <Icon name="goBack" onClick={() => console.log("clicou")} />
       )}
 
-      <Image alt="logo" src={logo} width={32} height={30} />
+      <Image
+        alt="logo"
+        src={logo}
+        width={32}
+        height={30}
+        style={{ width: 32, height: 30 }}
+      />
 
       <div />
     </div>

@@ -44,7 +44,7 @@ export default function Home() {
               src={creditCards}
               width={215}
               height={50}
-              style={{ paddingBottom: spacing.s32 }}
+              style={{ paddingBottom: spacing.s32, height: 50, width: 215 }}
             />
 
             <CheckoutForm />

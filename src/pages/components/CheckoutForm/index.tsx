@@ -1,5 +1,6 @@
 import { TextInput } from "@/components";
 import { useTheme } from "styled-components";
+import { SelectInstallments } from "./components/SelectInstallments";
 
 export function CheckoutForm() {
   const { spacing } = useTheme();
@@ -32,6 +33,8 @@ export function CheckoutForm() {
       <TextInput label="CPF" width="20rem" placeholder="000.000.000-00" />
 
       <TextInput label="Cupom" width="20rem" placeholder="Insira aqui" />
+
+      <SelectInstallments />
     </div>
   );
 }

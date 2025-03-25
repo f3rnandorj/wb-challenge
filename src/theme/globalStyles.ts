@@ -6,7 +6,7 @@ export const ResetCss = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
-
+  
   body {
     background-color: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.font.colors.text}; 

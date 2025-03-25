@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   padding: 0 ${({ theme }) => theme.spacing.s68};
   padding-top: ${({ theme }) => theme.spacing.s32};
