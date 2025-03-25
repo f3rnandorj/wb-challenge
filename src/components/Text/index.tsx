@@ -7,6 +7,7 @@ export type TextVariants =
   | "body"
   | "body2"
   | "body2Alternative"
+  | "footnote"
   | "exceptions"
   | "ctaText";
 
@@ -38,5 +39,6 @@ export const $fonts: Record<TextVariants, CSSProperties | undefined> = {
   body2: { fontSize: 14, lineHeight: "100%", fontWeight: 400 },
   body2Alternative: { fontSize: 14, lineHeight: "100%", fontWeight: 700 },
   ctaText: { fontSize: 12, lineHeight: "100%", fontWeight: 700 },
+  footnote: { fontSize: 12, lineHeight: "100%", fontWeight: 400 },
   exceptions: { fontSize: 10, lineHeight: "100%", fontWeight: 400 },
 };
