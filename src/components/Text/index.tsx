@@ -1,53 +1,42 @@
-// src/components/Text/index.tsx
-import styled, { DefaultTheme } from "styled-components";
+import { CSSProperties, ReactNode } from "react";
+import { DefaultTheme } from "styled-components";
+import { StyledText } from "./styles";
 
-interface TextProps {
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
-  weight?: "light" | "regular" | "medium" | "bold";
-  color?: keyof DefaultTheme["colors"];
-  align?: "left" | "center" | "right" | "justify";
-  transform?: "none" | "uppercase" | "lowercase" | "capitalize";
+export type TextVariants =
+  | "h4"
+  | "body"
+  | "body2"
+  | "body2Alternative"
+  | "exceptions"
+  | "ctaText";
+
+export interface TextProps {
+  as?: React.ElementType;
+  preset?: TextVariants;
+  color?: keyof DefaultTheme["font"]["colors"];
+  children: ReactNode;
+  style?: CSSProperties | undefined;
 }
 
-export const Text = styled.p.withConfig({
-  shouldForwardProp: (prop) => prop !== "weight",
-})<TextProps>`
-  font-size: ${({ size }) => {
-    switch (size) {
-      case "xs":
-        return "0.75rem"; // 12px
-      case "sm":
-        return "0.875rem"; // 14px
-      case "md":
-        return "1rem"; // 16px
-      case "lg":
-        return "1.25rem"; // 20px
-      case "xl":
-        return "4rem"; // 64px
-      default:
-        return "1rem";
-    }
-  }};
+export function Text({
+  children,
+  preset = "body",
+  color = "text",
+  style,
+  ...sRTextProps
+}: TextProps) {
+  return (
+    <StyledText preset={preset} color={color} {...sRTextProps} style={style}>
+      {children}
+    </StyledText>
+  );
+}
 
-  font-weight: ${({ weight }) => {
-    switch (weight) {
-      case "light":
-        return 300;
-      case "regular":
-        return 400;
-      case "medium":
-        return 500;
-      case "bold":
-        return 700;
-      default:
-        return 400;
-    }
-  }};
-
-  color: ${({ theme, color }) =>
-    theme.font.colors[color as keyof typeof theme.font.colors] ||
-    theme.font.colors.text};
-
-  text-align: ${({ align }) => align || "left"};
-  text-transform: ${({ transform }) => transform || "none"};
-`;
+export const $fonts: Record<TextVariants, CSSProperties | undefined> = {
+  h4: { fontSize: 20, lineHeight: "100%", fontWeight: 400 },
+  body: { fontSize: 16, lineHeight: "100%", fontWeight: 400 },
+  body2: { fontSize: 14, lineHeight: "100%", fontWeight: 400 },
+  body2Alternative: { fontSize: 14, lineHeight: "100%", fontWeight: 700 },
+  ctaText: { fontSize: 12, lineHeight: "100%", fontWeight: 700 },
+  exceptions: { fontSize: 10, lineHeight: "100%", fontWeight: 400 },
+};

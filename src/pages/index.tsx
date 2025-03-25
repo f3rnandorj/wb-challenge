@@ -20,7 +20,7 @@ export default function Home() {
         <MainGrid>
           <Column>
             <div>
-              <Text align="left" style={{ paddingBottom: spacing.s10 }}>
+              <Text preset="h4" as="h4" style={{ paddingBottom: spacing.s10 }}>
                 Estamos quase lá!
               </Text>
 

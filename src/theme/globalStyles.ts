@@ -17,7 +17,7 @@ export const ResetCss = createGlobalStyle`
   input,
   textarea,
   button {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-weight: 400;
   }
 
