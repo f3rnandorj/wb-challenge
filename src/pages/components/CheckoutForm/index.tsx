@@ -34,7 +34,7 @@ export function CheckoutForm({ selectedOffer }: Props) {
   const { setLastCheckout } = useCheckoutService();
 
   const { createCheckout } = useCheckoutCreate({
-    onSuccess: () => push("/"),
+    onSuccess: () => push("/success-checkout"),
     onError: () => setLastCheckout(null),
   });
 
