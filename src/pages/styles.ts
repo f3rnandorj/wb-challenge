@@ -2,18 +2,32 @@ import { styled } from "styled-components";
 
 export const MainGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 22rem 22rem;
   height: 100vh;
   width: 100%;
 
+  justify-content: center;
+
+  gap: 16.75rem;
+
   @media (max-width: ${({ theme }) => theme?.breakpoints?.xxl}) {
-    gap: ${({ theme }) => theme.spacing.s20};
+    gap: 10rem;
+  }
+  @media (max-width: ${({ theme }) => theme?.breakpoints?.xl}) {
+    gap: ${({ theme }) => theme.spacing.s72};
+  }
+
+  @media (max-width: ${({ theme }) => theme?.breakpoints?.lg}) {
+    gap: ${({ theme }) => theme.spacing.s48};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints?.md}) {
+    grid-template-columns: 22rem;
   }
 `;
 
 export const Column = styled.div`
   display: flex;
-  flex: 1;
   flex-direction: column;
   align-items: center;
 `;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { CSSProperties, useState } from "react";
 import { RadioButtonSelector } from "./components/RadioButtonSelector";
 
 interface Option {
@@ -9,20 +9,22 @@ interface Option {
   installments: string;
 }
 
-export function RadioGroup() {
+export function RadioGroup({ style }: { style?: CSSProperties | undefined }) {
   const [selectedItem, setSelectedItem] = useState<Option>(itemsToMap[0]);
 
   return (
-    <RadioButtonSelector
-      onSelect={(item) => setSelectedItem(item)}
-      items={itemsToMap}
-      selectedItem={selectedItem}
-      paymentKey="payment"
-      discountPercentageKey="discountPercentage"
-      installmentsKey="installments"
-      priceKey="price"
-      paymentMethodKey="paymentMethod"
-    />
+    <div style={style}>
+      <RadioButtonSelector
+        onSelect={(item) => setSelectedItem(item)}
+        items={itemsToMap}
+        selectedItem={selectedItem}
+        paymentKey="payment"
+        discountPercentageKey="discountPercentage"
+        installmentsKey="installments"
+        priceKey="price"
+        paymentMethodKey="paymentMethod"
+      />
+    </div>
   );
 }
 

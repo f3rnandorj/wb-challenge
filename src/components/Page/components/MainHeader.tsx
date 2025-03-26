@@ -16,8 +16,10 @@ export function MainHeader({ canGoBack }: Props) {
         alignItems: "center",
       }}
     >
-      {canGoBack && (
+      {canGoBack ? (
         <Icon name="goBack" onClick={() => console.log("clicou")} />
+      ) : (
+        <div />
       )}
 
       <Image

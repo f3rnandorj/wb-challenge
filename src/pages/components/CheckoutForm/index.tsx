@@ -11,28 +11,29 @@ export function CheckoutForm() {
         display: "flex",
         flexDirection: "column",
         gap: spacing.s32,
+        alignSelf: "baseline",
       }}
     >
       <TextInput
         label="Número do cartão"
-        width="20rem"
+        width="100%"
         placeholder="0000 0000 0000 0000"
       />
 
-      <div style={{ display: "flex" }}>
-        <TextInput label="Validade" width="10rem" placeholder="MM/AA" />
-        <TextInput label="CVV" width="10rem" placeholder="000" />
+      <div style={{ display: "flex", gap: spacing.s10 }}>
+        <TextInput label="Validade" width="100%" placeholder="MM/AA" />
+        <TextInput label="CVV" width="100%" placeholder="000" />
       </div>
 
       <TextInput
         label="Nome impresso no cartão"
-        width="20rem"
+        width="100%"
         placeholder="Seu nome"
       />
 
-      <TextInput label="CPF" width="20rem" placeholder="000.000.000-00" />
+      <TextInput label="CPF" width="100%" placeholder="000.000.000-00" />
 
-      <TextInput label="Cupom" width="20rem" placeholder="Insira aqui" />
+      <TextInput label="Cupom" width="100%" placeholder="Insira aqui" />
 
       <SelectInstallments />
 

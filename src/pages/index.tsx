@@ -19,10 +19,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Page canGoBack>
+      <Page>
         <MainGrid>
           <Column>
-            <div>
+            <div style={{ alignSelf: "baseline" }}>
               <Text
                 preset="h4"
                 as="h1"
@@ -53,7 +53,13 @@ export default function Home() {
           </Column>
 
           <Column>
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignSelf: "baseline",
+              }}
+            >
               <Text
                 preset="h4"
                 as="h1"
@@ -70,7 +76,7 @@ export default function Home() {
               </EmailBox>
             </div>
 
-            <RadioGroup />
+            <RadioGroup style={{ alignSelf: "baseline" }} />
           </Column>
         </MainGrid>
       </Page>
