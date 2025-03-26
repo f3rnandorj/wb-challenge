@@ -7,15 +7,22 @@ import creditCards from "../assets/creditCards.png";
 import { CheckoutForm } from "./components/CheckoutForm";
 
 import { Offers } from "./components/Offers";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Offer, useOfferGetAll } from "@/domain";
 
 export default function Home() {
   const { spacing } = useTheme();
 
+  const offerListData = useOfferGetAll();
+
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>();
 
-  const offerListData = useOfferGetAll();
+  useEffect(() => {
+    if (offerListData.offers) {
+      setSelectedOffer(offerListData.offers[0]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [offerListData.isSuccess]);
 
   return (
     <>

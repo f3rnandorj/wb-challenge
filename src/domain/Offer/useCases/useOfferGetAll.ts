@@ -14,10 +14,11 @@ export interface UseOfferGetAllReturn {
   refetch: (
     options?: RefetchOptions
   ) => Promise<QueryObserverResult<Offer[], Error>>;
+  isSuccess: boolean;
 }
 
 export function useOfferGetAll(): UseOfferGetAllReturn {
-  const { data, isLoading, isError, refetch } = useQuery({
+  const { data, isLoading, isError, refetch, isSuccess } = useQuery({
     queryKey: [QueryKeys.OfferList],
     queryFn: offerService.getAllOffers,
     staleTime: 1000 * 30,
@@ -28,5 +29,6 @@ export function useOfferGetAll(): UseOfferGetAllReturn {
     isLoading,
     isError,
     refetch,
+    isSuccess,
   };
 }

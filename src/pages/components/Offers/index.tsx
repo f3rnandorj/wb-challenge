@@ -1,6 +1,6 @@
 import { Column, EmailBox } from "../../styles";
 import { Text } from "@/components";
-import { RadioGroup } from "../RadioGroup";
+import { RadioGroup } from "./components/RadioGroup";
 import { useTheme } from "styled-components";
 import { Offer, UseOfferGetAllReturn } from "@/domain";
 
