@@ -11,8 +11,10 @@ export const ButtonContainer = styled.button`
     background-color: #3e2a5d;
   }
 
-  &:focus {
+  &:focus,
+  &:focus-visible {
     outline: none;
+    box-shadow: 0 0 0 4px ${({ theme }) => theme.colors.secondary};
   }
 
   &:active {
@@ -22,5 +24,6 @@ export const ButtonContainer = styled.button`
   &:disabled {
     background-color: ${({ theme }) => theme.colors.gray3};
     cursor: not-allowed;
+    box-shadow: none;
   }
 `;

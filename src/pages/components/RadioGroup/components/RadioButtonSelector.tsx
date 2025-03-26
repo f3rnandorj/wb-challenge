@@ -31,6 +31,7 @@ export function RadioButtonSelector<ItemT extends ItemTConstraint>({
     <RadioButtonSelectorContainer>
       {items.map((item) => (
         <RadioButtonSelectorItemWrapper
+          id="firstOfferRef"
           key={item.label}
           onClick={() => onSelect(item)}
         >

@@ -1,11 +1,12 @@
 import { Page, Text } from "@/components";
 import Head from "next/head";
-import { Column, EmailBox, MainGrid } from "./styles";
+import { Column, MainGrid } from "./styles";
 import { useTheme } from "styled-components";
 import Image from "next/image";
 import creditCards from "../assets/creditCards.png";
 import { CheckoutForm } from "./components/CheckoutForm";
-import { RadioGroup } from "./components/RadioGroup";
+
+import { Offers } from "./components/Offers";
 
 export default function Home() {
   const { spacing } = useTheme();
@@ -46,38 +47,13 @@ export default function Home() {
               src={creditCards}
               width={215}
               height={50}
-              style={{ paddingBottom: spacing.s32, height: 50, width: 215 }}
+              style={{ paddingBottom: spacing.s32, height: 70, width: 215 }}
             />
 
             <CheckoutForm />
           </Column>
 
-          <Column>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignSelf: "baseline",
-              }}
-            >
-              <Text
-                preset="h4"
-                as="h1"
-                color="title"
-                style={{ paddingBottom: spacing.s10 }}
-              >
-                Confira o seu plano:
-              </Text>
-
-              <EmailBox>
-                <Text as="span" color="title" preset="footnote">
-                  fulano@cicrano.com.br
-                </Text>
-              </EmailBox>
-            </div>
-
-            <RadioGroup style={{ alignSelf: "baseline" }} />
-          </Column>
+          <Offers />
         </MainGrid>
       </Page>
     </>

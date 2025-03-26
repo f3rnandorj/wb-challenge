@@ -1,22 +1,32 @@
 import { CSSProperties, useState } from "react";
 import { RadioButtonSelector } from "./components/RadioButtonSelector";
+import { useOfferGetAll } from "@/domain";
+import { EmptyRadioGroup } from "./components/EmptyRadioGroup";
 
-interface Option {
-  payment: "monthly" | "yearly";
-  paymentMethod: string;
-  price: string;
-  discountPercentage: string;
-  installments: string;
+interface Props {
+  style?: CSSProperties | undefined;
 }
 
-export function RadioGroup({ style }: { style?: CSSProperties | undefined }) {
+export function RadioGroup({ style }: Props) {
   const [selectedItem, setSelectedItem] = useState<Option>(itemsToMap[0]);
+
+  const { offers, isError, isLoading, refetch } = useOfferGetAll();
+
+  if (isError || isLoading || !offers) {
+    return (
+      <EmptyRadioGroup
+        refetch={refetch}
+        isError={isError && !offers}
+        isLoading={isLoading}
+      />
+    );
+  }
 
   return (
     <div style={style}>
       <RadioButtonSelector
         onSelect={(item) => setSelectedItem(item)}
-        items={itemsToMap}
+        items={offers}
         selectedItem={selectedItem}
         paymentKey="payment"
         discountPercentageKey="discountPercentage"
@@ -26,6 +36,14 @@ export function RadioGroup({ style }: { style?: CSSProperties | undefined }) {
       />
     </div>
   );
+}
+
+interface Option {
+  payment: "monthly" | "yearly";
+  paymentMethod: string;
+  price: string;
+  discountPercentage: string;
+  installments: string;
 }
 
 const itemsToMap: Option[] = [

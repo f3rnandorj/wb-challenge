@@ -16,7 +16,7 @@ export const SelectField = styled.select`
   color: ${({ theme }) => theme.font.colors.text};
 
   &:focus {
-    border-color: #007bff;
+    border-color: ${({ theme }) => theme.colors.secondary};
   }
 
   &::placeholder {

@@ -16,7 +16,7 @@ export const InputField = styled.input`
   color: ${({ theme }) => theme.font.colors.text};
 
   &:focus {
-    border-color: #007bff;
+    border-color: ${({ theme }) => theme.colors.secondary};
   }
 
   &::placeholder {

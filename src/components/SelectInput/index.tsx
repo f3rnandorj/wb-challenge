@@ -4,7 +4,6 @@ import { Text } from "@/components";
 import { SelectField, SelectWrapper, Option } from "./styles";
 
 interface SelectInputProps {
-  // eslint-disable-next-line no-unused-vars
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   label?: string;
   width?: string;

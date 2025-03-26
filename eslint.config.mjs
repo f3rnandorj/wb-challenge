@@ -17,8 +17,14 @@ const eslintConfig = [
       quotes: ["error", "double"],
       "prefer-arrow-callback": ["error"],
       "prefer-template": ["error"],
-      "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^ItemT$" }],
-      "@typescript-eslint/no-explicit-any": ["off"]
+      "@typescript-eslint/no-explicit-any": ["off"],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_",
+          "ignoreRestSiblings": true
+        }
+      ]
     }
   }),
 ];

@@ -14,16 +14,18 @@ export type RadioButtonItemProps = RadioProps & {
   discountPercentage: string;
   installments: string;
   price: string;
+  ref?: React.Ref<HTMLDivElement> | undefined;
 };
 export function RadioButtonItem({
   discountPercentage,
   installments,
   price,
   paymentMethod,
+  ref,
   ...radioProps
 }: RadioButtonItemProps) {
   return (
-    <RadioButtonItemContainer>
+    <RadioButtonItemContainer ref={ref}>
       <Details>
         <Text preset="body2Alternative" color="primary">
           {paymentMethod}

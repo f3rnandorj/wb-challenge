@@ -5,8 +5,8 @@ export const RadioContainer = styled.div<{ isSelected: boolean }>`
   justify-content: center;
   align-items: center;
 
-  height: 17px;
-  width: 17px;
+  height: 16px;
+  width: 16px;
 
   border: ${({ isSelected, theme }) =>
     `2px solid ${isSelected ? theme.colors.gray4 : theme.colors.gray5}`};
@@ -17,8 +17,8 @@ export const RadioContainer = styled.div<{ isSelected: boolean }>`
 export const RadioCircle = styled.div<{ isSelected: boolean }>`
   background-color: ${({ isSelected, theme }) =>
     isSelected ? theme.colors.primary : "transparent"};
-  height: 8.5px;
-  width: 8.5px;
+  height: 8px;
+  width: 8px;
   border-radius: ${({ theme }) => theme.borderRadius.s50};
 `;
 
@@ -35,6 +35,11 @@ export const RadioButtonItemContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.primary};
 
   border-radius: ${({ theme }) => theme.borderRadius.s15};
+
+  &:focus {
+    /* display: none; */
+    border-color: ${({ theme }) => theme.colors.secondary};
+  }
 `;
 
 export const Details = styled.div`
@@ -60,6 +65,11 @@ export const RadioButtonSelectorContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.s12};
+
+  &:focus {
+    /* display: none; */
+    border-color: ${({ theme }) => theme.colors.secondary};
+  }
 `;
 
 export const RadioButtonSelectorItemWrapper = styled.button`

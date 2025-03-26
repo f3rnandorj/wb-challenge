@@ -5,3 +5,4 @@ export * from "./Text";
 export * from "./TextInput";
 export * from "./SelectInput";
 export * from "./Button";
+export * from "./Loading";
