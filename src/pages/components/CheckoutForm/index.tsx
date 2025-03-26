@@ -10,13 +10,14 @@ import { useForm } from "react-hook-form";
 import { PaymentFormData, paymentFormSchema } from "./checkoutFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckoutCreateParams, Offer, useCheckoutCreate } from "@/domain";
+import { useEffect, useState } from "react";
 
 interface Props {
   selectedOffer: Offer | undefined;
 }
 
 export function CheckoutForm({ selectedOffer }: Props) {
-  const { control, handleSubmit } = useForm<PaymentFormData>({
+  const { control, handleSubmit, setValue } = useForm<PaymentFormData>({
     resolver: zodResolver(paymentFormSchema),
     mode: "onSubmit",
     defaultValues: {
@@ -30,6 +31,9 @@ export function CheckoutForm({ selectedOffer }: Props) {
   const { createCheckout } = useCheckoutCreate({
     onSuccess: (checkout) => console.log({ checkout }),
   });
+
+  const [isInstallmentsInputDisabled, setIsInstallmentsInputDisabled] =
+    useState(false);
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
     if (event.key === "Tab" && !event.shiftKey) {
@@ -56,6 +60,16 @@ export function CheckoutForm({ selectedOffer }: Props) {
       createCheckout(checkout);
     }
   }
+
+  useEffect(() => {
+    if (selectedOffer?.payment === "yearly") {
+      setValue("installments", 1);
+      setIsInstallmentsInputDisabled(true);
+    } else {
+      setIsInstallmentsInputDisabled(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedOffer]);
 
   return (
     <form
@@ -135,6 +149,7 @@ export function CheckoutForm({ selectedOffer }: Props) {
         name="installments"
         label="Número de parcelas*"
         options={installments}
+        disabled={isInstallmentsInputDisabled}
       />
 
       <Button
