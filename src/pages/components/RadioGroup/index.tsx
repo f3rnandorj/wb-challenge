@@ -1,16 +1,22 @@
-import { CSSProperties, useState } from "react";
+import { CSSProperties } from "react";
 import { RadioButtonSelector } from "./components/RadioButtonSelector";
-import { useOfferGetAll } from "@/domain";
+import { Offer, UseOfferGetAllReturn } from "@/domain";
 import { EmptyRadioGroup } from "./components/EmptyRadioGroup";
 
 interface Props {
   style?: CSSProperties | undefined;
+  offerListData: UseOfferGetAllReturn;
+  selectedOffer: Offer | undefined;
+  setSelectedOffer: (offer: Offer) => void;
 }
 
-export function RadioGroup({ style }: Props) {
-  const [selectedItem, setSelectedItem] = useState<Option>(itemsToMap[0]);
-
-  const { offers, isError, isLoading, refetch } = useOfferGetAll();
+export function RadioGroup({
+  style,
+  offerListData,
+  selectedOffer,
+  setSelectedOffer,
+}: Props) {
+  const { isError, isLoading, offers, refetch } = offerListData;
 
   if (isError || isLoading || !offers) {
     return (
@@ -25,9 +31,9 @@ export function RadioGroup({ style }: Props) {
   return (
     <div style={style}>
       <RadioButtonSelector
-        onSelect={(item) => setSelectedItem(item)}
         items={offers}
-        selectedItem={selectedItem}
+        onSelect={(item) => setSelectedOffer(item)}
+        selectedItem={selectedOffer}
         paymentKey="payment"
         discountPercentageKey="discountPercentage"
         installmentsKey="installments"
@@ -37,28 +43,3 @@ export function RadioGroup({ style }: Props) {
     </div>
   );
 }
-
-interface Option {
-  payment: "monthly" | "yearly";
-  paymentMethod: string;
-  price: string;
-  discountPercentage: string;
-  installments: string;
-}
-
-const itemsToMap: Option[] = [
-  {
-    payment: "monthly",
-    paymentMethod: "Anual  |  À Vista",
-    price: "De R$ 514,80  |  Por R$ 436,90",
-    discountPercentage: "-15%",
-    installments: "10x de R$ 43,69/mês",
-  },
-  {
-    payment: "yearly",
-    paymentMethod: "Anual  |  Parcelado",
-    price: "De R$ 514,80  |  Por R$ 479,90",
-    discountPercentage: "-7%",
-    installments: "10x de R$ 47,99/mês",
-  },
-];

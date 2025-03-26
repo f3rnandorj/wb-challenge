@@ -3,7 +3,7 @@ import { useTheme } from "styled-components";
 import { Text } from "@/components";
 import { SelectField, SelectWrapper, Option } from "./styles";
 
-interface SelectValueProps {
+export interface SelectValueProps {
   label: string;
   value: number | string | number;
 }

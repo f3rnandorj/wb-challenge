@@ -2,8 +2,18 @@ import { Column, EmailBox } from "../../styles";
 import { Text } from "@/components";
 import { RadioGroup } from "../RadioGroup";
 import { useTheme } from "styled-components";
+import { Offer, UseOfferGetAllReturn } from "@/domain";
 
-export function Offers() {
+interface Props {
+  offerListData: UseOfferGetAllReturn;
+  selectedOffer: Offer | undefined;
+  setSelectedOffer: (offer: Offer) => void;
+}
+export function Offers({
+  offerListData,
+  selectedOffer,
+  setSelectedOffer,
+}: Props) {
   const { spacing } = useTheme();
 
   return (
@@ -31,7 +41,12 @@ export function Offers() {
         </EmailBox>
       </div>
 
-      <RadioGroup style={{ alignSelf: "baseline" }} />
+      <RadioGroup
+        style={{ alignSelf: "baseline" }}
+        offerListData={offerListData}
+        selectedOffer={selectedOffer}
+        setSelectedOffer={setSelectedOffer}
+      />
     </Column>
   );
 }

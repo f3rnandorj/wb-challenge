@@ -7,9 +7,15 @@ import creditCards from "../assets/creditCards.png";
 import { CheckoutForm } from "./components/CheckoutForm";
 
 import { Offers } from "./components/Offers";
+import { useState } from "react";
+import { Offer, useOfferGetAll } from "@/domain";
 
 export default function Home() {
   const { spacing } = useTheme();
+
+  const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>();
+
+  const offerListData = useOfferGetAll();
 
   return (
     <>
@@ -50,10 +56,14 @@ export default function Home() {
               style={{ paddingBottom: spacing.s32, height: 70, width: 215 }}
             />
 
-            <CheckoutForm />
+            <CheckoutForm selectedOffer={selectedOffer} />
           </Column>
 
-          <Offers />
+          <Offers
+            offerListData={offerListData}
+            selectedOffer={selectedOffer}
+            setSelectedOffer={setSelectedOffer}
+          />
         </MainGrid>
       </Page>
     </>

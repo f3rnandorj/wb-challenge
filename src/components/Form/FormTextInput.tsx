@@ -26,7 +26,7 @@ export function FormTextInput<FormType extends FieldValues>({
     cpf: formatCpf,
   };
 
-  function applyMask(text: string, mask?: MaskType): string {
+  function applyMask(text: string): string {
     if (!mask) return text;
 
     const maskFunction = maskStrategies[mask];

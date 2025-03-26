@@ -1,8 +1,22 @@
 import { QueryKeys } from "@/infra";
-import { useQuery } from "@tanstack/react-query";
+import {
+  QueryObserverResult,
+  RefetchOptions,
+  useQuery,
+} from "@tanstack/react-query";
 import { offerService } from "../offerService";
+import { Offer } from "../offerTypes";
 
-export function useOfferGetAll() {
+export interface UseOfferGetAllReturn {
+  offers: Offer[] | undefined;
+  isLoading: boolean;
+  isError: boolean;
+  refetch: (
+    options?: RefetchOptions
+  ) => Promise<QueryObserverResult<Offer[], Error>>;
+}
+
+export function useOfferGetAll(): UseOfferGetAllReturn {
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: [QueryKeys.OfferList],
     queryFn: offerService.getAllOffers,

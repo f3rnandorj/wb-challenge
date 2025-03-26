@@ -25,9 +25,9 @@ export function MainHeader({ canGoBack }: Props) {
       <Image
         alt="logo"
         src={logo}
-        width={32}
+        width={42}
         height={30}
-        style={{ width: 32, height: 30 }}
+        style={{ width: 42, height: 30 }}
       />
 
       <div />

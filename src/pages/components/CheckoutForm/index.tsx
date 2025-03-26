@@ -1,28 +1,35 @@
-import { Button, FormTextInput, FormSelectInput } from "@/components";
+import {
+  Button,
+  FormTextInput,
+  FormSelectInput,
+  SelectValueProps,
+} from "@/components";
 import { useTheme } from "styled-components";
 import { useRefService } from "@/services";
 import { useForm } from "react-hook-form";
 import { PaymentFormData, paymentFormSchema } from "./checkoutFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { CheckoutCreateParams, Offer, useCheckoutCreate } from "@/domain";
 
-export function CheckoutForm() {
+interface Props {
+  selectedOffer: Offer | undefined;
+}
+
+export function CheckoutForm({ selectedOffer }: Props) {
   const { control, handleSubmit } = useForm<PaymentFormData>({
     resolver: zodResolver(paymentFormSchema),
-    mode: "all",
+    mode: "onSubmit",
     defaultValues: {
-      cardNumber: "",
-      coupon: "",
-      cpf: "",
-      cvv: "",
-      expiryDate: "",
-      name: "",
       installments: 0,
     },
   });
 
   const { spacing } = useTheme();
-
   const { homeRadioGroupFirstElement } = useRefService();
+
+  const { createCheckout } = useCheckoutCreate({
+    onSuccess: (checkout) => console.log({ checkout }),
+  });
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
     if (event.key === "Tab" && !event.shiftKey) {
@@ -32,7 +39,22 @@ export function CheckoutForm() {
   }
 
   function submitForm(formData: PaymentFormData) {
-    console.log(formData);
+    if (selectedOffer) {
+      const checkout: CheckoutCreateParams = {
+        couponCode: formData.coupon || null,
+        creditCardCPF: formData.cpf,
+        creditCardCVV: formData.cvv,
+        creditCardExplorationDate: formData.expiryDate,
+        creditCardHolder: formData.name,
+        creditCardNumber: formData.cardNumber,
+        installments: formData.installments,
+        gateway: selectedOffer.gateway,
+        offerId: selectedOffer.id,
+        userId: 1,
+      };
+
+      createCheckout(checkout);
+    }
   }
 
   return (
@@ -126,12 +148,7 @@ export function CheckoutForm() {
   );
 }
 
-interface InstallmentsProps {
-  label: string;
-  value: number;
-}
-
-const installments: InstallmentsProps[] = [
+const installments: SelectValueProps[] = [
   { label: "Selecionar", value: 0 },
   { label: "1x", value: 1 },
   { label: "2x", value: 2 },
