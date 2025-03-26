@@ -1,13 +1,15 @@
 import { Page, Text } from "@/components";
 import Head from "next/head";
-import { Column, MainGrid } from "./styles";
+import { Column, EmailBox, MainGrid } from "./styles";
 import { useTheme } from "styled-components";
 import Image from "next/image";
 import creditCards from "../assets/creditCards.png";
 import { CheckoutForm } from "./components/CheckoutForm";
+import { RadioGroup } from "./components/RadioGroup";
 
 export default function Home() {
   const { spacing } = useTheme();
+
   return (
     <>
       <Head>
@@ -50,7 +52,26 @@ export default function Home() {
             <CheckoutForm />
           </Column>
 
-          <Column></Column>
+          <Column>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <Text
+                preset="h4"
+                as="h1"
+                color="title"
+                style={{ paddingBottom: spacing.s10 }}
+              >
+                Confira o seu plano:
+              </Text>
+
+              <EmailBox>
+                <Text as="span" color="title" preset="footnote">
+                  fulano@cicrano.com.br
+                </Text>
+              </EmailBox>
+            </div>
+
+            <RadioGroup />
+          </Column>
         </MainGrid>
       </Page>
     </>

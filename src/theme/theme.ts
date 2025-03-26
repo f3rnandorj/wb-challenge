@@ -24,6 +24,8 @@ const theme: DefaultTheme = {
       text: "#666173",
       placeholder: "#C9C5D4",
       grayWhite: "#FFFFFF",
+      primary: "#191847",
+      secondary: "#F5850B",
     },
   },
   spacing: {
