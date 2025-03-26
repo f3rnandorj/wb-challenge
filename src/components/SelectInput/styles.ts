@@ -6,7 +6,7 @@ export const SelectWrapper = styled.div<{ width: string }>`
   width: ${({ width }) => width || "100%"};
 `;
 
-export const SelectField = styled.select`
+export const SelectField = styled.select<{ isDefaultItem: boolean }>`
   padding: 10px 0;
   border: none;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray6};
@@ -19,28 +19,17 @@ export const SelectField = styled.select`
     border-color: ${({ theme }) => theme.colors.secondary};
   }
 
-  &::placeholder {
-    color: ${({ theme }) => theme.font.colors.placeholder};
-    font-size: 16px;
-    opacity: 1;
-    line-height: 100%;
-  }
-`;
-
-export const Option = styled.option<{ isDefaultItem: boolean }>`
   ${({ isDefaultItem }) =>
     isDefaultItem &&
     css`
-      display: none;
+      color: ${({ theme }) => theme.font.colors.placeholder};
+      font-size: 16px;
+      opacity: 1;
+      line-height: 100%;
     `}
+`;
 
+export const Option = styled.option`
   font-size: 16px;
   color: ${({ theme }) => theme.font.colors.text};
-
-  &::placeholder {
-    color: ${({ theme }) => theme.font.colors.placeholder};
-    font-size: 16px;
-    opacity: 1;
-    line-height: 100%;
-  }
 `;

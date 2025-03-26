@@ -4,16 +4,18 @@ import { InputField, InputWrapper } from "./styles";
 import { Text } from "@/components";
 import { useTheme } from "styled-components";
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface TextInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   width?: string;
+  errorMessage?: string;
 }
 
 export function TextInput({
   label,
   width = "100%",
-  ...textInputProps
-}: InputProps) {
+  ...textTextInputProps
+}: TextInputProps) {
   const { spacing } = useTheme();
 
   return (
@@ -28,7 +30,7 @@ export function TextInput({
         </Text>
       )}
 
-      <InputField type="text" {...textInputProps} />
+      <InputField type="text" {...textTextInputProps} />
     </InputWrapper>
   );
 }

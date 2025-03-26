@@ -14,6 +14,7 @@ export function CheckoutForm() {
       homeRadioGroupFirstElement.current?.focus();
     }
   };
+
   return (
     <form
       style={{

@@ -11,6 +11,7 @@ export function SelectInstallments() {
 
   return (
     <SelectInput
+      label="Número de parcelas"
       options={installments}
       value={selectedValue}
       onChange={handleChange}

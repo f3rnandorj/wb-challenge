@@ -19,7 +19,7 @@ export function SelectInput({
   onChange,
 }: SelectInputProps) {
   const { spacing } = useTheme();
-
+  console.log(value);
   return (
     <SelectWrapper width={width}>
       {label && (
@@ -32,13 +32,13 @@ export function SelectInput({
         </Text>
       )}
 
-      <SelectField value={value} onChange={onChange}>
+      <SelectField
+        value={value}
+        onChange={onChange}
+        isDefaultItem={value === 0}
+      >
         {options.map((option) => (
-          <Option
-            key={option.value}
-            value={option.value}
-            isDefaultItem={option.label === "Selecionar"}
-          >
+          <Option key={option.value} value={option.value}>
             {option.label}
           </Option>
         ))}
