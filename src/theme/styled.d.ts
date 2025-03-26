@@ -27,6 +27,7 @@ declare module "styled-components" {
         grayWhite: string;
         primary: string;
         secondary: string;
+        danger: string;
       };
     };
     spacing: {

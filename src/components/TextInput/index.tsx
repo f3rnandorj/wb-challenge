@@ -14,7 +14,8 @@ export interface TextInputProps
 export function TextInput({
   label,
   width = "100%",
-  ...textTextInputProps
+  errorMessage,
+  ...textInputProps
 }: TextInputProps) {
   const { spacing } = useTheme();
 
@@ -30,7 +31,9 @@ export function TextInput({
         </Text>
       )}
 
-      <InputField type="text" {...textTextInputProps} />
+      <InputField type="text" {...textInputProps} />
+
+      <Text color="danger">{errorMessage}</Text>
     </InputWrapper>
   );
 }

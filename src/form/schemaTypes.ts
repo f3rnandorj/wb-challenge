@@ -10,10 +10,8 @@ const name = z
 
 const cardNumber = z
   .string()
-  .min(16, "Número do cartão deve ter 16 dígitos")
-  .max(16, "Número do cartão deve ter 16 dígitos")
-  .regex(/^\d{16}$/, "Apenas números são permitidos")
-  .transform((val) => val.replace(/(\d{4})/g, "$1 ").trim());
+  .min(19, "Número do cartão é obrigatório")
+  .transform((value) => value.replace(/\D/g, ""));
 
 const expiryDate = z
   .string()
@@ -32,8 +30,8 @@ const expiryDate = z
 
 const cvv = z
   .string()
-  .min(3, "CVV deve ter 3 dígitos")
-  .max(3, "CVV deve ter 3")
+  .min(3, "CVV deve ter no mínimo 3 dígitos")
+  .max(4, "CVV deve ter 4 dígitos")
   .regex(/^\d+$/, "Apenas números são permitidos");
 
 const cpf = z
@@ -56,12 +54,9 @@ const cpf = z
     return rest === parseInt(val.charAt(10));
   }, "CPF inválido");
 
-const coupon = z.string().max(20, "Cupom muito longo").optional();
+const coupon = z.string().max(15, "Cupom muito longo").optional();
 
-const installments = z
-  .number()
-  .min(1, "Selecione o número de parcelas")
-  .max(12, "Número máximo de parcelas é 12");
+const installments = z.number();
 
 export const schemaTypes = {
   name,

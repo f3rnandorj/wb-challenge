@@ -26,6 +26,7 @@ const theme: DefaultTheme = {
       grayWhite: "#FFFFFF",
       primary: "#191847",
       secondary: "#F5850B",
+      danger: "#FF6B6B",
     },
   },
   spacing: {

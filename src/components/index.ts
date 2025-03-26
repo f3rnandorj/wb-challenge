@@ -4,6 +4,7 @@ export * from "./Page";
 export * from "./Text";
 export * from "./TextInput";
 export * from "./Form/FormTextInput";
+export * from "./Form/FormSelectInput";
 export * from "./SelectInput";
 export * from "./Button";
 export * from "./Loading";
