@@ -4,7 +4,11 @@ import { StyleSheetManager, ThemeProvider } from "styled-components";
 import { DM_Sans } from "next/font/google";
 import isPropValid from "@emotion/is-prop-valid";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ContextProviders } from "@/services";
+import {
+  ContextProviders,
+  initializeStorage,
+  localStorageImplementation,
+} from "@/services";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -12,6 +16,7 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
+initializeStorage(localStorageImplementation);
 const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {

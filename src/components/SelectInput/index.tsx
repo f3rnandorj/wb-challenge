@@ -49,7 +49,9 @@ export function SelectInput({
         ))}
       </SelectField>
 
-      <Text color="danger">{errorMessage}</Text>
+      <Text preset="body2" color="danger">
+        {errorMessage}
+      </Text>
     </SelectWrapper>
   );
 }

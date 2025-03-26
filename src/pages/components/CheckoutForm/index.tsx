@@ -11,6 +11,8 @@ import { PaymentFormData, paymentFormSchema } from "./checkoutFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckoutCreateParams, Offer, useCheckoutCreate } from "@/domain";
 import { useEffect, useState } from "react";
+import { useCheckoutService } from "@/services";
+import { useRouter } from "next/router";
 
 interface Props {
   selectedOffer: Offer | undefined;
@@ -26,10 +28,14 @@ export function CheckoutForm({ selectedOffer }: Props) {
   });
 
   const { spacing } = useTheme();
+  const { push } = useRouter();
   const { homeRadioGroupFirstElement } = useRefService();
 
+  const { setLastCheckout } = useCheckoutService();
+
   const { createCheckout } = useCheckoutCreate({
-    onSuccess: (checkout) => console.log({ checkout }),
+    onSuccess: () => push("/"),
+    onError: () => setLastCheckout(null),
   });
 
   const [isInstallmentsInputDisabled, setIsInstallmentsInputDisabled] =
@@ -57,6 +63,7 @@ export function CheckoutForm({ selectedOffer }: Props) {
         userId: 1,
       };
 
+      setLastCheckout(checkout);
       createCheckout(checkout);
     }
   }

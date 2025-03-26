@@ -33,7 +33,9 @@ export function TextInput({
 
       <InputField type="text" {...textInputProps} />
 
-      <Text color="danger">{errorMessage}</Text>
+      <Text preset="body2" color="danger">
+        {errorMessage}
+      </Text>
     </InputWrapper>
   );
 }

@@ -2,19 +2,19 @@ import { stringUtils } from "@/utils";
 import { z } from "zod";
 
 const name = z
-  .string()
+  .string({ required_error: "Nome obrigatório" })
   .min(5, "Nome muito curto")
   .max(50, "Nome muito longo")
   .refine((name) => name.split(" ").length >= 2, "Insira nome e sobrenome")
   .transform(stringUtils.capitalizeFirstLetter);
 
 const cardNumber = z
-  .string()
-  .min(19, "Número do cartão é obrigatório")
+  .string({ required_error: "Número do cartão obrigatório" })
+  .min(19, "Número do cartão incompleto")
   .transform((value) => value.replace(/\D/g, ""));
 
 const expiryDate = z
-  .string()
+  .string({ required_error: "Data obrigatória" })
   .regex(/^(0[1-9]|1[0-2])\/?([0-9]{2})$/, "Formato inválido (MM/AA)")
   .refine((val) => {
     const [month, year] = val.split("/");
@@ -29,13 +29,13 @@ const expiryDate = z
   }, "Cartão expirado ou data inválida");
 
 const cvv = z
-  .string()
+  .string({ required_error: "CVV obrigatório" })
   .min(3, "CVV deve ter no mínimo 3 dígitos")
   .max(4, "CVV deve ter 4 dígitos")
   .regex(/^\d+$/, "Apenas números são permitidos");
 
 const cpf = z
-  .string()
+  .string({ required_error: "CPF obrigatório" })
   .regex(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, "Formato inválido (000.000.000-00)")
   .transform((val) => val.replace(/\D/g, ""))
   .refine((val) => {
@@ -56,7 +56,9 @@ const cpf = z
 
 const coupon = z.string().max(15, "Cupom muito longo").optional();
 
-const installments = z.number();
+const installments = z.number().min(1, {
+  message: "Selecione uma parcela",
+});
 
 export const schemaTypes = {
   name,
