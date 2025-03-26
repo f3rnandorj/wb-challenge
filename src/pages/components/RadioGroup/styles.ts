@@ -36,9 +36,13 @@ export const RadioButtonItemContainer = styled.div`
 
   border-radius: ${({ theme }) => theme.borderRadius.s15};
 
-  &:focus {
-    /* display: none; */
-    border-color: ${({ theme }) => theme.colors.secondary};
+  &:focus-visible {
+    outline: none;
+    border: 3px solid ${({ theme }) => theme.colors.secondary};
+  }
+
+  &:focus:not(:focus-visible) {
+    border: 1px solid ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -65,11 +69,6 @@ export const RadioButtonSelectorContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.s12};
-
-  &:focus {
-    /* display: none; */
-    border-color: ${({ theme }) => theme.colors.secondary};
-  }
 `;
 
 export const RadioButtonSelectorItemWrapper = styled.button`

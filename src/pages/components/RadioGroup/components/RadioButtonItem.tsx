@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import { Text } from "@/components";
 import {
@@ -14,41 +14,49 @@ export type RadioButtonItemProps = RadioProps & {
   discountPercentage: string;
   installments: string;
   price: string;
-  ref?: React.Ref<HTMLDivElement> | undefined;
 };
-export function RadioButtonItem({
-  discountPercentage,
-  installments,
-  price,
-  paymentMethod,
-  ref,
-  ...radioProps
-}: RadioButtonItemProps) {
-  return (
-    <RadioButtonItemContainer ref={ref}>
-      <Details>
-        <Text preset="body2Alternative" color="primary">
-          {paymentMethod}
-        </Text>
 
-        <PriceContainer>
-          <Text preset="footnote" color="primary">
-            {price}
+const RadioButtonItem = forwardRef<HTMLDivElement, RadioButtonItemProps>(
+  (
+    {
+      discountPercentage,
+      installments,
+      price,
+      paymentMethod,
+      ...radioProps
+    }: RadioButtonItemProps,
+    ref
+  ) => {
+    return (
+      <RadioButtonItemContainer tabIndex={0} ref={ref}>
+        <Details>
+          <Text preset="body2Alternative" color="primary">
+            {paymentMethod}
           </Text>
 
-          <DiscountPercentageContainer>
-            <Text preset="exceptions" color="grayWhite">
-              {discountPercentage}
+          <PriceContainer>
+            <Text preset="footnote" color="primary">
+              {price}
             </Text>
-          </DiscountPercentageContainer>
-        </PriceContainer>
 
-        <Text preset="exceptions" color="secondary">
-          {installments}
-        </Text>
-      </Details>
+            <DiscountPercentageContainer>
+              <Text preset="exceptions" color="grayWhite">
+                {discountPercentage}
+              </Text>
+            </DiscountPercentageContainer>
+          </PriceContainer>
 
-      <Radio {...radioProps} />
-    </RadioButtonItemContainer>
-  );
-}
+          <Text preset="exceptions" color="secondary">
+            {installments}
+          </Text>
+        </Details>
+
+        <Radio {...radioProps} />
+      </RadioButtonItemContainer>
+    );
+  }
+);
+
+RadioButtonItem.displayName = "RadioButtonItem";
+
+export { RadioButtonItem };

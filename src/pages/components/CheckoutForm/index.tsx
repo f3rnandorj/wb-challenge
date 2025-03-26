@@ -1,17 +1,19 @@
 import { TextInput, Button } from "@/components";
 import { useTheme } from "styled-components";
 import { SelectInstallments } from "./components/SelectInstallments";
+import { useRefService } from "@/services";
 
 export function CheckoutForm() {
   const { spacing } = useTheme();
 
-  // const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-  //   if (event.key === "Tab" && !event.shiftKey) {
-  //     event.preventDefault();
-  //     firstOfferRef.current?.focus();
-  //   }
-  // };
+  const { homeRadioGroupFirstElement } = useRefService();
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === "Tab" && !event.shiftKey) {
+      event.preventDefault();
+      homeRadioGroupFirstElement.current?.focus();
+    }
+  };
   return (
     <form
       style={{
@@ -67,7 +69,7 @@ export function CheckoutForm() {
       <SelectInstallments />
 
       <Button
-        // onKeyDown={handleKeyDown}
+        onKeyDown={handleKeyDown}
         title="Finalizar pagamento"
         textColor="grayWhite"
         disabled={false}

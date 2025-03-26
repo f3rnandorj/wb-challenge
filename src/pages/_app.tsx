@@ -4,6 +4,7 @@ import { StyleSheetManager, ThemeProvider } from "styled-components";
 import { DM_Sans } from "next/font/google";
 import isPropValid from "@emotion/is-prop-valid";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ContextProviders } from "@/services";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -22,7 +23,9 @@ export default function App({ Component, pageProps }: AppProps) {
           shouldForwardProp={(propName) => isPropValid(propName)}
         >
           <QueryClientProvider client={queryClient}>
-            <Component {...pageProps} />
+            <ContextProviders>
+              <Component {...pageProps} />
+            </ContextProviders>
           </QueryClientProvider>
         </StyleSheetManager>
       </div>
