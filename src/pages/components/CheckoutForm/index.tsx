@@ -5,7 +5,7 @@ import {
   SelectValueProps,
 } from "@/components";
 import { useTheme } from "styled-components";
-import { useRefService } from "@/services";
+import { useRefService, useToast } from "@/services";
 import { useForm } from "react-hook-form";
 import { PaymentFormData, paymentFormSchema } from "./checkoutFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,6 +27,7 @@ export function CheckoutForm({ selectedOffer }: Props) {
     },
   });
 
+  const { showToast } = useToast();
   const { spacing } = useTheme();
   const { push } = useRouter();
   const { homeRadioGroupFirstElement } = useRefService();
@@ -35,7 +36,14 @@ export function CheckoutForm({ selectedOffer }: Props) {
 
   const { createCheckout, isLoading } = useCheckoutCreate({
     onSuccess: () => push("/success-checkout"),
-    onError: () => setLastSuccessCheckout(null),
+    onError: () => {
+      showToast({
+        message:
+          "Tivemos um problema em registrar sua compra. Verifique os dados e tente novamente.",
+        type: "error",
+      });
+      setLastSuccessCheckout(null);
+    },
   });
 
   const [isInstallmentsInputDisabled, setIsInstallmentsInputDisabled] =

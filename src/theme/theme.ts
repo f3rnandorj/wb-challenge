@@ -16,6 +16,7 @@ const theme: DefaultTheme = {
     gray6: "#F4F3F6",
     grayWhite: "#FFFFFF",
 
+    success: "#4CAF50",
     danger: "#FF6B6B",
   },
   font: {
@@ -26,6 +27,7 @@ const theme: DefaultTheme = {
       grayWhite: "#FFFFFF",
       primary: "#191847",
       secondary: "#F5850B",
+      success: "#4CAF50",
       danger: "#FF6B6B",
     },
   },

@@ -2,7 +2,7 @@
 
 import { useTheme, DefaultTheme } from "styled-components";
 import React from "react";
-import { Check, Star, ChevronLeft } from "lucide-react";
+import { Check, Star, ChevronLeft, X } from "lucide-react";
 
 export type IconName = keyof typeof Icons;
 
@@ -42,4 +42,5 @@ const Icons = {
   goBack: ChevronLeft,
   star: Star,
   check: Check,
+  close: X,
 };

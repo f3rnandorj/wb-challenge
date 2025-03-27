@@ -9,6 +9,7 @@ import {
   initializeStorage,
   localStorageImplementation,
 } from "@/services";
+import { Toast } from "@/components";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -30,6 +31,8 @@ export default function App({ Component, pageProps }: AppProps) {
           <QueryClientProvider client={queryClient}>
             <ContextProviders>
               <Component {...pageProps} />
+
+              <Toast />
             </ContextProviders>
           </QueryClientProvider>
         </StyleSheetManager>

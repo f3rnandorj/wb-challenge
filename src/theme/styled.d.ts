@@ -17,6 +17,7 @@ declare module "styled-components" {
       gray6: string;
       grayWhite: string;
 
+      success: string;
       danger: string;
     };
     font: {
@@ -27,6 +28,7 @@ declare module "styled-components" {
         grayWhite: string;
         primary: string;
         secondary: string;
+        success: string;
         danger: string;
       };
     };

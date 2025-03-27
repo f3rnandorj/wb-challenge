@@ -8,3 +8,4 @@ export * from "./Form/FormSelectInput";
 export * from "./SelectInput";
 export * from "./Button";
 export * from "./Loading";
+export * from "./Toast";
