@@ -2,7 +2,14 @@
 
 import { useTheme, DefaultTheme } from "styled-components";
 import React from "react";
-import { Check, Star, ChevronLeft, X } from "lucide-react";
+import {
+  Check,
+  Star,
+  ChevronLeft,
+  X,
+  ChevronUp,
+  ChevronDown,
+} from "lucide-react";
 
 export type IconName = keyof typeof Icons;
 
@@ -43,4 +50,6 @@ const Icons = {
   star: Star,
   check: Check,
   close: X,
+  arrowUp: ChevronUp,
+  arrowDown: ChevronDown,
 };

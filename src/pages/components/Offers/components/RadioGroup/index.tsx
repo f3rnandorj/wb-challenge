@@ -2,6 +2,7 @@ import { CSSProperties } from "react";
 import { RadioButtonSelector } from "./components/RadioButtonSelector";
 import { Offer, UseOfferGetAllReturn } from "@/domain";
 import { EmptyRadioGroup } from "./components/EmptyRadioGroup";
+import { RadioGroupContainer } from "./styles";
 
 interface Props {
   style?: CSSProperties | undefined;
@@ -29,7 +30,7 @@ export function RadioGroup({
   }
 
   return (
-    <div style={style}>
+    <RadioGroupContainer style={style}>
       <RadioButtonSelector
         items={offers}
         onSelect={(item) => setSelectedOffer(item)}
@@ -40,6 +41,6 @@ export function RadioGroup({
         priceKey="price"
         paymentMethodKey="paymentMethod"
       />
-    </div>
+    </RadioGroupContainer>
   );
 }

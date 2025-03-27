@@ -9,24 +9,17 @@ import { CheckoutForm } from "./components/CheckoutForm";
 import { Offers } from "./components/Offers";
 import { useEffect, useState } from "react";
 import { Offer, useOfferGetAll } from "@/domain";
-import { useToast } from "@/services";
 
 export default function Home() {
   const { spacing } = useTheme();
 
   const offerListData = useOfferGetAll();
 
-  const { showToast } = useToast();
-
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>();
 
   useEffect(() => {
     if (offerListData.offers) {
       setSelectedOffer(offerListData.offers[0]);
-
-      showToast({
-        message: "Seja muito bem-vindo(a)!",
-      });
     }
   }, [offerListData.isSuccess]);
 

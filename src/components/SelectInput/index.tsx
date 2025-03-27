@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTheme } from "styled-components";
-import { Text } from "@/components";
-import { SelectField, SelectWrapper, Option } from "./styles";
+import { Icon, Text } from "@/components";
+import {
+  SelectWrapper,
+  CustomSelect,
+  SelectDropdown,
+  SelectOption,
+} from "./styles";
 
 export interface SelectValueProps {
   label: string;
-  value: number | string | number;
+  value: number | string;
 }
+
 export interface SelectInputProps
   extends React.InputHTMLAttributes<HTMLSelectElement> {
   label?: string;
@@ -21,12 +27,39 @@ export function SelectInput({
   options,
   value,
   errorMessage,
-  ...selectInputProps
+  onChange,
 }: SelectInputProps) {
   const { spacing } = useTheme();
+  const [isOpen, setIsOpen] = React.useState(false);
+  const selectRef = React.useRef<HTMLDivElement>(null);
+
+  const selectedOption = options.find((opt) => opt.value === value);
+  const displayValue = selectedOption?.label || "";
+
+  const handleToggle = () => setIsOpen(!isOpen);
+  const handleSelect = (selectedValue: string | number) => {
+    if (onChange) {
+      const event = {
+        target: { value: selectedValue },
+      } as React.ChangeEvent<HTMLSelectElement>;
+      onChange(event);
+    }
+    setIsOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!selectRef?.current?.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
-    <SelectWrapper width={width}>
+    <SelectWrapper ref={selectRef} width={width}>
       {label && (
         <Text
           as="label"
@@ -37,21 +70,33 @@ export function SelectInput({
         </Text>
       )}
 
-      <SelectField
-        isDefaultItem={value === 0}
-        value={value}
-        {...selectInputProps}
+      <CustomSelect
+        isDefaultItem={!value}
+        isOpen={isOpen}
+        onClick={handleToggle}
       >
-        {options.map((option) => (
-          <Option key={option.value} value={option.value}>
-            {option.label}
-          </Option>
-        ))}
-      </SelectField>
+        <Text color={selectedOption?.value === 0 ? "placeholder" : "text"}>
+          {displayValue || "Selecione"}
+        </Text>
+        <Icon name={isOpen ? "arrowUp" : "arrowDown"} />
+      </CustomSelect>
 
-      <Text preset="body2" color="danger">
-        {errorMessage}
-      </Text>
+      <SelectDropdown isOpen={isOpen}>
+        {options.map((option) => (
+          <SelectOption
+            key={option.value.toString()}
+            onClick={() => handleSelect(option.value)}
+          >
+            {option.label}
+          </SelectOption>
+        ))}
+      </SelectDropdown>
+
+      {errorMessage && (
+        <Text preset="body2" color="danger">
+          {errorMessage}
+        </Text>
+      )}
     </SelectWrapper>
   );
 }

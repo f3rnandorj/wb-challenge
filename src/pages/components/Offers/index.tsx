@@ -42,7 +42,6 @@ export function Offers({
       </div>
 
       <RadioGroup
-        style={{ alignSelf: "baseline" }}
         offerListData={offerListData}
         selectedOffer={selectedOffer}
         setSelectedOffer={setSelectedOffer}

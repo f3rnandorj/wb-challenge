@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 export const MainGrid = styled.div`
   display: grid;
   grid-template-columns: 22rem 22rem;
-  height: 100vh;
+  height: 100%;
   width: 100%;
 
   justify-content: center;
@@ -23,6 +23,15 @@ export const MainGrid = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoints?.md}) {
     grid-template-columns: 22rem;
+    margin-bottom: ${({ theme }) => theme.spacing.s20};
+
+    & > div:first-child {
+      order: 2;
+    }
+
+    & > div:last-child {
+      order: 1;
+    }
   }
 `;
 

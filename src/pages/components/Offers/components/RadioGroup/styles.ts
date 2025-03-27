@@ -44,6 +44,10 @@ export const RadioButtonItemContainer = styled.div`
   &:focus:not(:focus-visible) {
     border: 1px solid ${({ theme }) => theme.colors.primary};
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints?.md}) {
+    width: 100%;
+  }
 `;
 
 export const Details = styled.div`
@@ -76,4 +80,13 @@ export const RadioButtonSelectorItemWrapper = styled.button`
   flex-direction: column;
   all: unset;
   cursor: pointer;
+`;
+
+export const RadioGroupContainer = styled.div`
+  align-self: baseline;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints?.md}) {
+    align-self: center;
+    width: 100%;
+  }
 `;

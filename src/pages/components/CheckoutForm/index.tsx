@@ -21,7 +21,7 @@ interface Props {
 export function CheckoutForm({ selectedOffer }: Props) {
   const { control, handleSubmit, setValue } = useForm<PaymentFormData>({
     resolver: zodResolver(paymentFormSchema),
-    mode: "onSubmit",
+    mode: "onBlur",
     defaultValues: {
       installments: 0,
     },
@@ -35,7 +35,13 @@ export function CheckoutForm({ selectedOffer }: Props) {
   const { setLastSuccessCheckout } = useCheckoutService();
 
   const { createCheckout, isLoading } = useCheckoutCreate({
-    onSuccess: () => push("/success-checkout"),
+    onSuccess: () => {
+      showToast({
+        message:
+          "Pagamento aprovado! Seu pedido foi confirmado com sucesso. 🎉",
+      });
+      push("/success-checkout");
+    },
     onError: () => {
       showToast({
         message:

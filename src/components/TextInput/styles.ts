@@ -7,7 +7,7 @@ export const InputWrapper = styled.div<{ width: string }>`
 `;
 
 export const InputField = styled.input`
-  padding: 10px 0;
+  padding: ${({ theme }) => theme.spacing.s10} 0;
   border: none;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray6};
   outline: none;
