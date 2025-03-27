@@ -16,12 +16,12 @@ export default function Home() {
   const offerListData = useOfferGetAll();
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>();
+  console.log(selectedOffer);
 
   useEffect(() => {
     if (offerListData.offers) {
       setSelectedOffer(offerListData.offers[0]);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offerListData.isSuccess]);
 
   return (

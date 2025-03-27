@@ -13,6 +13,7 @@ function toOffer(offer: OfferApi): Offer {
   return {
     id: offer.id,
     discountCouponCode: offer.discountCouponCode,
+    discountedPrice,
     gateway: offer.gateway,
     payment: isInstallment ? "monthly" : "yearly",
     price: `De ${formatPrice(fullPrice)}  |  Por ${formatPrice(

@@ -5,14 +5,14 @@ import { useTheme } from "styled-components";
 
 interface Props {
   children: ReactNode;
-  canGoBack?: boolean;
+  goBackFn?: () => void;
 }
-export function Page({ children, canGoBack = false }: Props) {
+export function Page({ children, goBackFn }: Props) {
   const { spacing } = useTheme();
 
   return (
     <Container>
-      <MainHeader canGoBack={canGoBack} />
+      <MainHeader goBackFn={goBackFn} />
 
       <div style={{ paddingTop: spacing.s72 }}>{children}</div>
     </Container>

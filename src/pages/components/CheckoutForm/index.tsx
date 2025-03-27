@@ -31,11 +31,11 @@ export function CheckoutForm({ selectedOffer }: Props) {
   const { push } = useRouter();
   const { homeRadioGroupFirstElement } = useRefService();
 
-  const { setLastCheckout } = useCheckoutService();
+  const { setLastSuccessCheckout } = useCheckoutService();
 
   const { createCheckout } = useCheckoutCreate({
     onSuccess: () => push("/success-checkout"),
-    onError: () => setLastCheckout(null),
+    onError: () => setLastSuccessCheckout(null),
   });
 
   const [isInstallmentsInputDisabled, setIsInstallmentsInputDisabled] =
@@ -63,7 +63,11 @@ export function CheckoutForm({ selectedOffer }: Props) {
         userId: 1,
       };
 
-      setLastCheckout(checkout);
+      setLastSuccessCheckout({
+        ...selectedOffer,
+        ...checkout,
+        installments: selectedOffer.installments,
+      });
       createCheckout(checkout);
     }
   }
@@ -75,7 +79,6 @@ export function CheckoutForm({ selectedOffer }: Props) {
     } else {
       setIsInstallmentsInputDisabled(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedOffer]);
 
   return (

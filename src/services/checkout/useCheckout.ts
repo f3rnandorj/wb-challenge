@@ -2,19 +2,23 @@ import { create } from "zustand";
 import { CheckoutService } from "./checkoutTypes";
 
 const useCheckoutStore = create<CheckoutService>()((set) => ({
-  lastCheckout: null,
+  lastSuccessCheckout: null,
 
-  setLastCheckout: (checkout) => {
-    set({ lastCheckout: checkout });
+  setLastSuccessCheckout: (checkout) => {
+    set({ lastSuccessCheckout: checkout });
   },
 }));
 
 export function useCheckoutService(): CheckoutService {
-  const lastCheckout = useCheckoutStore((state) => state.lastCheckout);
-  const setLastCheckout = useCheckoutStore((state) => state.setLastCheckout);
+  const lastSuccessCheckout = useCheckoutStore(
+    (state) => state.lastSuccessCheckout
+  );
+  const setLastSuccessCheckout = useCheckoutStore(
+    (state) => state.setLastSuccessCheckout
+  );
 
   return {
-    lastCheckout,
-    setLastCheckout,
+    lastSuccessCheckout,
+    setLastSuccessCheckout,
   };
 }

@@ -11,6 +11,7 @@ export interface IconProps {
   size?: number;
   color?: keyof DefaultTheme["colors"];
   onClick?: () => void;
+  style?: React.CSSProperties | undefined;
 }
 
 export function Icon({
@@ -18,6 +19,7 @@ export function Icon({
   size = 22,
   color = "primary",
   onClick,
+  style,
 }: IconProps) {
   const { colors } = useTheme();
   const SelectedIcon = Icons[name];
@@ -28,7 +30,10 @@ export function Icon({
       size={size}
       color={iconColor}
       onClick={onClick}
-      style={{ cursor: "pointer" }}
+      style={{
+        cursor: onClick ? "pointer" : "default",
+        ...style,
+      }}
     />
   );
 }

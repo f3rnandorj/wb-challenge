@@ -18,6 +18,7 @@ const eslintConfig = [
       "prefer-arrow-callback": ["error"],
       "prefer-template": ["error"],
       "@typescript-eslint/no-explicit-any": ["off"],
+      "react-hooks/exhaustive-deps": ["off"],
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
