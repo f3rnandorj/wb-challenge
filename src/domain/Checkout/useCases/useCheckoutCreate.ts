@@ -6,7 +6,7 @@ import { MutationOptions, QueryKeys } from "@/infra";
 export function useCheckoutCreate(options?: MutationOptions<Checkout>) {
   const queryClient = useQueryClient();
 
-  const { mutate, isPending, isSuccess, isError } = useMutation<
+  const { mutate, isPending, isError } = useMutation<
     Checkout,
     unknown,
     CheckoutCreateParams
@@ -30,7 +30,6 @@ export function useCheckoutCreate(options?: MutationOptions<Checkout>) {
   return {
     createCheckout: mutate,
     isLoading: isPending,
-    isSuccess,
     isError,
   };
 }

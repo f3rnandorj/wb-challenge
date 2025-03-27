@@ -33,7 +33,7 @@ export function CheckoutForm({ selectedOffer }: Props) {
 
   const { setLastSuccessCheckout } = useCheckoutService();
 
-  const { createCheckout } = useCheckoutCreate({
+  const { createCheckout, isLoading } = useCheckoutCreate({
     onSuccess: () => push("/success-checkout"),
     onError: () => setLastSuccessCheckout(null),
   });
@@ -168,6 +168,7 @@ export function CheckoutForm({ selectedOffer }: Props) {
         title="Finalizar pagamento"
         textColor="grayWhite"
         disabled={false}
+        isLoading={isLoading}
       />
     </form>
   );

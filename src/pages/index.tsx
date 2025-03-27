@@ -16,7 +16,6 @@ export default function Home() {
   const offerListData = useOfferGetAll();
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | undefined>();
-  console.log(selectedOffer);
 
   useEffect(() => {
     if (offerListData.offers) {
