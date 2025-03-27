@@ -20,6 +20,7 @@ const eslintConfig = [
       "prefer-template": ["error"],
       "@typescript-eslint/no-explicit-any": ["off"],
       "react-hooks/exhaustive-deps": ["off"],
+      "react/display-name": ["off"],
       "@typescript-eslint/no-unused-vars": [
         "error",
         {

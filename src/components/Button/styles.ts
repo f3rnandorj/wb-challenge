@@ -7,7 +7,7 @@ const spin = keyframes`
 
 export const ButtonContainer = styled.button`
   background-color: ${({ theme }) => theme.colors.primary};
-  padding: 18px 40px;
+  padding: ${({ theme }) => `${theme.spacing.s16} ${theme.spacing.s40}`};
   border-radius: ${({ theme }) => theme.borderRadius.s50};
   border: none;
   transition: background-color 0.3s ease;
@@ -37,3 +37,4 @@ export const Spinner = styled.div`
   animation: ${spin} 1s ease-in-out infinite;
   margin: 0 auto;
 `;
+Spinner.displayName = "Spinner";
