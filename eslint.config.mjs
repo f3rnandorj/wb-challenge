@@ -26,7 +26,7 @@ const eslintConfig = [
           "ignoreRestSiblings": true
         }
       ]
-    }
+    },
   }),
 ];
 export default eslintConfig;

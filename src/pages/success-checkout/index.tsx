@@ -1,5 +1,5 @@
-import { Button, Icon, Page, Text } from "@/components";
-import { useCheckoutService } from "@/services";
+import { Button, Icon, Page, Text, Toast } from "@/components";
+import { useCheckoutService, useToast } from "@/services";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import {
@@ -17,6 +17,7 @@ export default function SuccessCheckout() {
   const { setLastSuccessCheckout, lastSuccessCheckout } = useCheckoutService();
   const { push } = useRouter();
   const { spacing } = useTheme();
+  const { showToast } = useToast();
 
   function goBack() {
     push("/");
@@ -26,6 +27,11 @@ export default function SuccessCheckout() {
   useEffect(() => {
     if (!lastSuccessCheckout) {
       push("/");
+    } else {
+      showToast({
+        message:
+          "Pagamento aprovado! Seu pedido foi confirmado com sucesso. 🎉",
+      });
     }
   }, [lastSuccessCheckout]);
 
@@ -109,6 +115,8 @@ export default function SuccessCheckout() {
           />
         </MainColumn>
       </div>
+
+      <Toast />
     </Page>
   );
 }

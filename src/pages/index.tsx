@@ -1,4 +1,4 @@
-import { Page, Text } from "@/components";
+import { Page, Text, Toast } from "@/components";
 import Head from "next/head";
 import { Column, MainGrid } from "./styles";
 import { useTheme } from "styled-components";
@@ -72,6 +72,8 @@ export default function Home() {
           />
         </MainGrid>
       </Page>
+
+      <Toast />
     </>
   );
 }
