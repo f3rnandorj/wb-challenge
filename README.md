@@ -39,10 +39,13 @@
 1. **Clone o repositório**  
    ```bash
    git clone https://github.com/f3rnandorj/wb-challenge
-2. **Instale as dependências**  
+2. **Navegue para a pasta do projeto**  
+   ```bash
+   cd wb-challenge
+3. **Instale as dependências**  
    ```bash
    yarn
-3. **Execute o projeto**  
+4. **Execute o projeto**  
    ```bash
    yarn dev
 
