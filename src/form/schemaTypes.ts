@@ -30,9 +30,9 @@ const expiryDate = z
 
 const cvv = z
   .string({ required_error: "CVV obrigatório" })
+  .regex(/^\d+$/, "Apenas números são permitidos")
   .min(3, "CVV deve ter no mínimo 3 dígitos")
-  .max(4, "CVV deve ter 4 dígitos")
-  .regex(/^\d+$/, "Apenas números são permitidos");
+  .max(4, "CVV deve ter 4 dígitos");
 
 const cpf = z
   .string({ required_error: "CPF obrigatório" })
