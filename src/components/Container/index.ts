@@ -16,30 +16,35 @@ export const Container = styled.main`
 
   @media (min-width: ${({ theme }) => theme?.breakpoints?.xxl}) {
     max-width: 96rem;
+    padding-bottom: ${({ theme }) => theme.spacing.s12};
   }
 
   @media (max-width: ${({ theme }) => theme?.breakpoints?.xxl}) {
     max-width: 96rem;
     padding-left: ${({ theme }) => theme.spacing.s48};
     padding-right: ${({ theme }) => theme.spacing.s48};
+    padding-bottom: ${({ theme }) => theme.spacing.s12};
   }
 
   @media (max-width: ${({ theme }) => theme?.breakpoints?.xl}) {
     max-width: 80rem;
     padding-left: ${({ theme }) => theme.spacing.s32};
     padding-right: ${({ theme }) => theme.spacing.s32};
+    padding-bottom: ${({ theme }) => theme.spacing.s12};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints?.lg}) {
     max-width: 64rem;
     padding-left: ${({ theme }) => theme.spacing.s24};
     padding-right: ${({ theme }) => theme.spacing.s24};
+    padding-bottom: ${({ theme }) => theme.spacing.s12};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints?.md}) {
     max-width: 48rem;
     padding-left: ${({ theme }) => theme.spacing.s16};
     padding-right: ${({ theme }) => theme.spacing.s16};
+    padding-bottom: ${({ theme }) => theme.spacing.s12};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints?.sm}) {
@@ -53,5 +58,6 @@ export const Container = styled.main`
   @media (max-width: 360px) {
     padding-left: ${({ theme }) => theme.spacing.s8};
     padding-right: ${({ theme }) => theme.spacing.s8};
+    padding-bottom: ${({ theme }) => theme.spacing.s8};
   }
 `;
