@@ -1,4 +1,4 @@
-import Home from "@/pages";
+import Home from "@/pages/index.page";
 import { fireEvent, render, screen, server, waitFor } from "@/test";
 
 beforeAll(() => {
