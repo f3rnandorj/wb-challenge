@@ -9,6 +9,7 @@ import {
   X,
   ChevronUp,
   ChevronDown,
+  Rocket,
 } from "lucide-react";
 
 export type IconName = keyof typeof Icons;
@@ -52,4 +53,5 @@ const Icons = {
   close: X,
   arrowUp: ChevronUp,
   arrowDown: ChevronDown,
+  rocket: Rocket,
 };

@@ -6,14 +6,19 @@ const spin = keyframes`
 `;
 
 export const ButtonContainer = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: ${({ theme }) => theme.colors.primary};
   padding: ${({ theme }) => `${theme.spacing.s16} ${theme.spacing.s40}`};
+
   border-radius: ${({ theme }) => theme.borderRadius.s50};
   border: none;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #3e2a5d;
+    background-color: #4d3a6d;
   }
 
   &:focus-visible {
@@ -26,6 +31,14 @@ export const ButtonContainer = styled.button`
     cursor: not-allowed;
     box-shadow: none;
   }
+`;
+
+export const ContentContainer = styled.div`
+  display: flex;
+  align-items: center;
+  align-self: center;
+
+  gap: ${({ theme }) => theme.spacing.s10};
 `;
 
 export const Spinner = styled.div`
