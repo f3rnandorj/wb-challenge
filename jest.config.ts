@@ -15,8 +15,8 @@ const config: Config = {
   ],
   coveragePathIgnorePatterns: [
     "/node_modules/",
-    "<rootDir>/src/pages/_app.tsx",
-    "<rootDir>/src/pages/_document.tsx",
+    "<rootDir>/src/pages/_app.page.tsx",
+    "<rootDir>/src/pages/_document.page.tsx",
   ],
 };
 
