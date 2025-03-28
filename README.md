@@ -38,8 +38,7 @@
 
 1. **Clone o repositório**  
    ```bash
-   git clone https://github.com/f3rnandorj/wb-challenge.git
-   cd wb-challenge
+   git clone https://github.com/f3rnandorj/wb-challenge
 2. **Instale as dependências**  
    ```bash
    yarn
