@@ -97,7 +97,7 @@ export function CheckoutForm({ selectedOffer }: Props) {
         display: "flex",
         flexDirection: "column",
         gap: spacing.s32,
-        alignSelf: "baseline",
+        width: "100%",
       }}
       onSubmit={handleSubmit(submitForm)}
     >

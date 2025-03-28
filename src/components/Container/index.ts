@@ -2,43 +2,56 @@ import styled from "styled-components";
 
 export const Container = styled.main`
   display: flex;
-  flex: 1;
   flex-direction: column;
-  height: 100%;
   width: 100%;
-  padding: 0 ${({ theme }) => theme.spacing.s68};
-  padding-top: ${({ theme }) => theme.spacing.s32};
-
+  min-height: 100vh;
+  padding: ${({ theme }) => theme.spacing.s32}
+    ${({ theme }) => theme.spacing.s68} 0;
   margin: 0 auto;
   box-sizing: border-box;
-  padding: 0 ${({ theme }) => theme.spacing.s68};
+
+  -webkit-overflow-scrolling: touch;
+
+  transition: padding 0.3s ease;
 
   @media (min-width: ${({ theme }) => theme?.breakpoints?.xxl}) {
-    max-width: 96rem; // 1536px
-    padding: 40px 25px 0px 25px;
+    max-width: 96rem;
   }
+
   @media (max-width: ${({ theme }) => theme?.breakpoints?.xxl}) {
-    max-width: 96rem; // 1536px
-    padding: 40px 25px 0px 25px;
+    max-width: 96rem;
+    padding-left: ${({ theme }) => theme.spacing.s48};
+    padding-right: ${({ theme }) => theme.spacing.s48};
   }
 
   @media (max-width: ${({ theme }) => theme?.breakpoints?.xl}) {
-    max-width: 80rem; // 1280px
-    padding: 40px 25px 0px 25px;
+    max-width: 80rem;
+    padding-left: ${({ theme }) => theme.spacing.s32};
+    padding-right: ${({ theme }) => theme.spacing.s32};
   }
 
-  @media (max-width: ${({ theme }) => theme?.breakpoints?.lg}) {
-    max-width: 64rem; // 1024px
-    padding-top: 40px;
+  @media (max-width: ${({ theme }) => theme.breakpoints?.lg}) {
+    max-width: 64rem;
+    padding-left: ${({ theme }) => theme.spacing.s24};
+    padding-right: ${({ theme }) => theme.spacing.s24};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints?.md}) {
-    max-width: 48rem; // 768px
-    padding: 40px 15px 0px 15px;
+    max-width: 48rem;
+    padding-left: ${({ theme }) => theme.spacing.s16};
+    padding-right: ${({ theme }) => theme.spacing.s16};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints?.sm}) {
     max-width: 100%;
-    padding-top: 40px;
+    padding-left: ${({ theme }) => theme.spacing.s12};
+    padding-right: ${({ theme }) => theme.spacing.s12};
+    padding-top: ${({ theme }) => theme.spacing.s24};
+    padding-bottom: ${({ theme }) => theme.spacing.s12};
+  }
+
+  @media (max-width: 360px) {
+    padding-left: ${({ theme }) => theme.spacing.s8};
+    padding-right: ${({ theme }) => theme.spacing.s8};
   }
 `;
