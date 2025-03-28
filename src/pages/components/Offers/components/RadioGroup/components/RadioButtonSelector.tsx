@@ -35,7 +35,10 @@ export function RadioButtonSelector<ItemT extends ItemTConstraint>({
     <RadioButtonSelectorContainer>
       {items.map((item, index) => (
         <RadioButtonSelectorItemWrapper
-          id="firstOfferRef"
+          data-testid={`offer-button-${index}`}
+          data-is-selected={
+            !!selectedItem && selectedItem[paymentKey] === item[paymentKey]
+          }
           key={item[paymentKey]}
           onClick={() => onSelect(item)}
         >
@@ -47,6 +50,7 @@ export function RadioButtonSelector<ItemT extends ItemTConstraint>({
                 ? homeRadioGroupSecondElement
                 : null
             }
+            testId={index === 0 ? "offer-1" : ""}
             discountPercentage={item[discountPercentageKey]}
             installments={item[installmentsKey]}
             price={item[priceKey]}

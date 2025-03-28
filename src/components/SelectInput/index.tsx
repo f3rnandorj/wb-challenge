@@ -14,11 +14,12 @@ export interface SelectValueProps {
 }
 
 export interface SelectInputProps
-  extends React.InputHTMLAttributes<HTMLSelectElement> {
+  extends Omit<React.InputHTMLAttributes<HTMLSelectElement>, "onClick"> {
   label?: string;
   width?: string;
   options: SelectValueProps[];
   errorMessage?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 export function SelectInput({
@@ -27,11 +28,12 @@ export function SelectInput({
   options,
   value,
   errorMessage,
+  onClick,
   onChange,
 }: SelectInputProps) {
   const { spacing } = useTheme();
   const [isOpen, setIsOpen] = React.useState(false);
-  const selectRef = React.useRef<HTMLDivElement>(null);
+  const selectRef = React.useRef<HTMLButtonElement>(null);
 
   const selectedOption = options.find((opt) => opt.value === value);
   const displayValue = selectedOption?.label || "";
@@ -59,7 +61,19 @@ export function SelectInput({
   }, []);
 
   return (
-    <SelectWrapper ref={selectRef} width={width}>
+    <SelectWrapper
+      ref={selectRef}
+      width={width}
+      data-testid="select-input-button"
+      onClick={() => onClick || setIsOpen(!isOpen)}
+      data-is-select-open={isOpen}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          setIsOpen(!isOpen);
+        }
+      }}
+    >
       {label && (
         <Text
           as="label"
@@ -75,7 +89,11 @@ export function SelectInput({
         isOpen={isOpen}
         onClick={handleToggle}
       >
-        <Text color={selectedOption?.value === 0 ? "placeholder" : "text"}>
+        <Text
+          as="p"
+          style={{ alignSelf: "baseline" }}
+          color={selectedOption?.value === 0 ? "placeholder" : "text"}
+        >
           {displayValue || "Selecione"}
         </Text>
         <Icon name={isOpen ? "arrowUp" : "arrowDown"} />

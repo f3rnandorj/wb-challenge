@@ -32,7 +32,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Page>
+      <Page testId="home-page">
         <MainGrid>
           <Column>
             <div style={{ alignSelf: "baseline" }}>
@@ -55,7 +55,7 @@ export default function Home() {
             </div>
 
             <Image
-              alt="credit-cards-image"
+              alt="Imagem com as bandeiras dos cartões de credito"
               src={creditCards}
               width={215}
               height={50}

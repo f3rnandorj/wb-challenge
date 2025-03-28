@@ -10,6 +10,7 @@ import {
 import { Radio, RadioProps } from "./Radio";
 
 export type RadioButtonItemProps = RadioProps & {
+  testId?: string;
   paymentMethod: string;
   discountPercentage: string;
   installments: string;
@@ -23,12 +24,13 @@ const RadioButtonItem = forwardRef<HTMLDivElement, RadioButtonItemProps>(
       installments,
       price,
       paymentMethod,
+      testId,
       ...radioProps
     }: RadioButtonItemProps,
     ref
   ) => {
     return (
-      <RadioButtonItemContainer tabIndex={0} ref={ref}>
+      <RadioButtonItemContainer data-testid={testId} tabIndex={0} ref={ref}>
         <Details>
           <Text preset="body2Alternative" color="primary">
             {paymentMethod}

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "dev:test": "jest --port 50789 --mode test",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -17,7 +18,9 @@
     "@hookform/resolvers": "^4.1.3",
     "@tanstack/react-query": "^5.69.0",
     "axios": "^1.8.4",
+    "jest-fixed-jsdom": "^0.0.9",
     "lucide-react": "^0.484.0",
+    "msw": "^2.7.3",
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -52,5 +55,8 @@
   },
   "resolutions": {
     "nwsapi": "2.2.9"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

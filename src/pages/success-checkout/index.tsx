@@ -17,7 +17,7 @@ export default function SuccessCheckout() {
   const { setLastSuccessCheckout, lastSuccessCheckout } = useCheckoutService();
   const { push } = useRouter();
   const { spacing } = useTheme();
-  const { showToast } = useToast();
+  const { showToast, hideToast } = useToast();
 
   function goBack() {
     push("/");
@@ -26,6 +26,7 @@ export default function SuccessCheckout() {
 
   useEffect(() => {
     if (!lastSuccessCheckout) {
+      hideToast();
       push("/");
     } else {
       showToast({

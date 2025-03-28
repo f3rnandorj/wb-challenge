@@ -1,15 +1,9 @@
 import styled, { css } from "styled-components";
 
-export const SelectWrapper = styled.div<{ width: string }>`
-  position: relative;
-  width: ${({ width }) => width || "100%"};
-  margin-bottom: 1.5rem;
-`;
-
 export const SelectDropdown = styled.ul<{ isOpen: boolean }>`
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   position: absolute;
-  top: 100%;
+  top: 85%;
   left: 0;
   right: 0;
 
@@ -64,4 +58,21 @@ export const CustomSelect = styled.div<{
     css`
       color: ${theme.font.colors.placeholder};
     `}
+`;
+
+export const SelectWrapper = styled.button<{ width: string }>`
+  position: relative;
+  width: ${({ width }) => width || "100%"};
+  background-color: ${({ theme }) => theme.colors.background};
+  margin-bottom: 1.5rem;
+  border: none;
+  text-align: left;
+
+  &:focus {
+    outline: none;
+
+    & ${CustomSelect} {
+      border-color: ${({ theme }) => theme.colors.secondary};
+    }
+  }
 `;
