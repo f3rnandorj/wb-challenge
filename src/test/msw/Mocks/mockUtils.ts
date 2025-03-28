@@ -35,7 +35,7 @@ const lastSuccessCheckout: SuccessCheckoutInfo = {
   price: "De R$ 600,00  |  Por R$ 540,00",
   paymentMethod: "Anual  |  Parcelado",
   discountPercentage: "-10%",
-  installments: "12x de R$ 45.00/mês",
+  installments: 10,
   couponCode: null,
   creditCardCPF: "15977732716",
   creditCardCVV: "123",

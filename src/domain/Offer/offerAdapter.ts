@@ -21,9 +21,9 @@ function toOffer(offer: OfferApi): Offer {
     )}`,
     paymentMethod: `Anual  |  ${isInstallment ? "Parcelado" : "À Vista"}`,
     discountPercentage,
-    installments: `${offer.installments}x de R$ ${(
-      discountedPrice / offer.installments
-    ).toFixed(2)}${isInstallment ? "/mês" : ""}`,
+    installments: `Até ${offer.installments}x de R$ ${discountedPrice.toFixed(
+      2
+    )}${isInstallment ? " / mês" : ""}`,
   };
 }
 

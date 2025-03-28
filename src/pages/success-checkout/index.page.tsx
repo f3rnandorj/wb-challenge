@@ -11,7 +11,7 @@ import {
 } from "./styles";
 import { useTheme } from "styled-components";
 import { InfoRowProps, UserInfoRow } from "./components/UserInfoRow";
-import { maskUtils, stringUtils } from "@/utils";
+import { maskUtils } from "@/utils";
 import Head from "next/head";
 
 export default function SuccessCheckout() {
@@ -39,11 +39,22 @@ export default function SuccessCheckout() {
 
   if (!lastSuccessCheckout) return null;
 
+  const anualPrice =
+    lastSuccessCheckout.payment === "monthly"
+      ? lastSuccessCheckout.discountedPrice * 12
+      : lastSuccessCheckout.discountedPrice;
+
+  const installmentsCount = lastSuccessCheckout.installments;
+
+  const formattedPrice = `
+  R$ ${anualPrice.toFixed(2)} | ${installmentsCount} 
+  x ${(anualPrice / installmentsCount).toFixed(2)}`;
+
   const userInfo: InfoRowProps[] = [
     { label: " E-mail", value: "fulano@cicrano.com.br" },
     {
       label: "CPF",
-      value: maskUtils.formatCpf(lastSuccessCheckout?.creditCardNumber),
+      value: maskUtils.formatCpf(lastSuccessCheckout?.creditCardCPF),
     },
   ];
 
@@ -101,12 +112,7 @@ export default function SuccessCheckout() {
                     {lastSuccessCheckout.paymentMethod}
                   </Text>
 
-                  <Text preset="body2">
-                    {`R$ ${lastSuccessCheckout.discountedPrice.toFixed(2)} | 
-                  ${stringUtils.formatInstallments(
-                    lastSuccessCheckout.installments
-                  )}`}
-                  </Text>
+                  <Text preset="body2">{formattedPrice}</Text>
                 </div>
               </CheckoutInfoBox>
 

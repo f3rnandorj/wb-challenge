@@ -56,6 +56,7 @@ export function CheckoutForm({
   });
 
   const installmentsInput = watch("installments");
+  const numberOfFieldErrors = Object.keys(formState.errors).length;
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
     if (event.key === "Tab" && !event.shiftKey) {
@@ -82,18 +83,20 @@ export function CheckoutForm({
       setLastSuccessCheckout({
         ...selectedOffer,
         ...checkout,
-        installments: selectedOffer.installments,
+        installments: formData.installments,
       });
       createCheckout(checkout);
     }
   }
 
   useEffect(() => {
-    if (formState.isSubmitted && !formState.isValid) {
+    if (
+      formState.isSubmitted &&
+      !formState.isValid &&
+      numberOfFieldErrors > 0
+    ) {
       showToast({
-        message: `Você não preencheu ${
-          Object.keys(formState.errors).length
-        } campo(s) do formulário, verifique e tente novamente.`,
+        message: `Você não preencheu ${numberOfFieldErrors} campo(s) do formulário, verifique e tente novamente.`,
         type: "error",
       });
     }

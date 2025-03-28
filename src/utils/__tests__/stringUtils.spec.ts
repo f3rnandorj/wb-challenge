@@ -15,18 +15,4 @@ describe("stringUtils", () => {
       expect(stringUtils.capitalizeFirstLetter("Ana maria ")).toBe("Ana Maria");
     });
   });
-
-  describe("formatInstallments", () => {
-    it("should remove 'de' and '/' of the expression '${times}x de R$ ${value}/mês'", () => {
-      expect(stringUtils.formatInstallments("12x de R$ 45.00/mês")).toBe(
-        "12x R$ 45.00"
-      );
-    });
-
-    it("should return the main expression when it is different from '${times}x de R$ ${value}/mês'", () => {
-      expect(stringUtils.formatInstallments("Ana Maria da Conceição")).toBe(
-        "Ana Maria da Conceição"
-      );
-    });
-  });
 });
