@@ -49,6 +49,7 @@ export default function SuccessCheckout() {
   return (
     <Page goBackFn={goBack}>
       <div
+        data-testid="success-checkout-page"
         style={{
           display: "flex",
           flex: 1,

@@ -29,6 +29,7 @@ export function SelectInput({
   value,
   errorMessage,
   onClick,
+  disabled,
   onChange,
 }: SelectInputProps) {
   const { spacing } = useTheme();
@@ -62,7 +63,9 @@ export function SelectInput({
 
   return (
     <SelectWrapper
+      type="button"
       ref={selectRef}
+      disabled={disabled}
       width={width}
       data-testid="select-input-button"
       onClick={() => onClick || setIsOpen(!isOpen)}
