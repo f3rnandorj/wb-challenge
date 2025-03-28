@@ -6,7 +6,7 @@ import {
   ToastContainer,
   ToastContent,
 } from "./styles";
-import { useToast } from "@/services/toast/useToast";
+import { useToast } from "@/services";
 
 export function Toast() {
   const { toast, hideToast } = useToast();

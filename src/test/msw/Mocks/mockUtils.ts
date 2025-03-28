@@ -1,4 +1,4 @@
-import { Offer } from "@/domain";
+import { Checkout, CheckoutCreateParams, Offer } from "@/domain";
 import { SuccessCheckoutInfo } from "@/services";
 
 const offers: Offer[] = [
@@ -46,7 +46,27 @@ const lastSuccessCheckout: SuccessCheckoutInfo = {
   userId: 1,
 };
 
+const checkout: Checkout = {
+  cpf: "98765432100",
+  installments: 1,
+};
+
+const checkoutCreateParams: CheckoutCreateParams = {
+  couponCode: null,
+  creditCardCPF: "98765432100",
+  creditCardCVV: "345",
+  creditCardExplorationDate: "10/25",
+  creditCardHolder: "Fernando Henrique",
+  creditCardNumber: "0000000000000000",
+  gateway: "iugu",
+  installments: 1,
+  offerId: 32,
+  userId: 1,
+};
+
 export const mockUtils = {
   offers,
   lastSuccessCheckout,
+  checkout,
+  checkoutCreateParams,
 };
