@@ -18,22 +18,27 @@ export function Toast() {
     }, (toast?.duration && toast.duration - 500) || 5500);
 
     const timer = setTimeout(() => {
-      setIsExiting(true);
       hideToast();
     }, toast?.duration || 6000);
 
     return () => {
+      setIsExiting(false);
       clearTimeout(exitingTimer);
       clearTimeout(timer);
     };
-  }, [toast?.duration]);
+  }, [toast]);
 
   if (!toast) return null;
 
   const { message, type } = toast;
 
   return (
-    <ToastContainer isExiting={isExiting} type={type || "success"} role="alert">
+    <ToastContainer
+      key={Date.now()}
+      isExiting={isExiting}
+      type={type || "success"}
+      role="alert"
+    >
       <ToastContent>
         <IconContainer type={type || "success"}>
           {type === "success" && (

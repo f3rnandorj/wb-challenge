@@ -1,4 +1,4 @@
-import { Button, Icon, Page, Text, Toast } from "@/components";
+import { Button, Icon, Page, Text } from "@/components";
 import { useCheckoutService, useToast } from "@/services";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -132,8 +132,6 @@ export default function SuccessCheckout() {
             />
           </MainColumn>
         </div>
-
-        <Toast />
       </Page>
     </>
   );

@@ -19,13 +19,14 @@ interface Props {
 }
 
 export function CheckoutForm({ selectedOffer }: Props) {
-  const { control, handleSubmit, setValue } = useForm<PaymentFormData>({
-    resolver: zodResolver(paymentFormSchema),
-    mode: "all",
-    defaultValues: {
-      installments: 0,
-    },
-  });
+  const { control, handleSubmit, setValue, formState } =
+    useForm<PaymentFormData>({
+      resolver: zodResolver(paymentFormSchema),
+      mode: "all",
+      defaultValues: {
+        installments: 0,
+      },
+    });
 
   const { showToast } = useToast();
   const { spacing } = useTheme();
@@ -81,6 +82,17 @@ export function CheckoutForm({ selectedOffer }: Props) {
       createCheckout(checkout);
     }
   }
+
+  useEffect(() => {
+    if (formState.isSubmitted && !formState.isValid) {
+      showToast({
+        message: `Você não preencheu ${
+          Object.keys(formState.errors).length
+        } campo(s) do formulário, verifique e tente novamente.`,
+        type: "error",
+      });
+    }
+  }, [formState.submitCount]);
 
   useEffect(() => {
     if (selectedOffer?.payment === "yearly") {
