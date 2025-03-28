@@ -1,5 +1,5 @@
 import { mockUtils, render, screen } from "@/test";
-import SuccessCheckout from "../..";
+import SuccessCheckout from "../../index.page";
 import { useCheckoutService } from "@/services";
 
 jest.mock("../../../../services/checkout/useCheckout", () => ({

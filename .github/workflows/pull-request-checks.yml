@@ -11,7 +11,7 @@ on:
       - develop
 
 jobs:
-  run-unit-tests:
+  run-tests:
     runs-on: ubuntu-latest
 
     steps:
