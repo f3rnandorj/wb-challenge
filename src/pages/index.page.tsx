@@ -65,7 +65,11 @@ export default function Home() {
               style={{ paddingBottom: spacing.s32 }}
             />
 
-            <CheckoutForm selectedOffer={selectedOffer} />
+            <CheckoutForm
+              selectedOffer={selectedOffer}
+              setSelectedOffer={setSelectedOffer}
+              offerList={offerListData.offers}
+            />
           </Column>
 
           <Offers

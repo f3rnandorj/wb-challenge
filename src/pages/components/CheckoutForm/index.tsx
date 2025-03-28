@@ -10,16 +10,22 @@ import { useForm } from "react-hook-form";
 import { PaymentFormData, paymentFormSchema } from "./checkoutFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckoutCreateParams, Offer, useCheckoutCreate } from "@/domain";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useCheckoutService } from "@/services";
 import { useRouter } from "next/router";
 
 interface Props {
   selectedOffer: Offer | undefined;
+  setSelectedOffer: (offer: Offer | undefined) => void;
+  offerList: Offer[] | undefined;
 }
 
-export function CheckoutForm({ selectedOffer }: Props) {
-  const { control, handleSubmit, setValue, formState } =
+export function CheckoutForm({
+  selectedOffer,
+  setSelectedOffer,
+  offerList,
+}: Props) {
+  const { control, handleSubmit, setValue, formState, watch, clearErrors } =
     useForm<PaymentFormData>({
       resolver: zodResolver(paymentFormSchema),
       mode: "all",
@@ -49,8 +55,7 @@ export function CheckoutForm({ selectedOffer }: Props) {
     },
   });
 
-  const [isInstallmentsInputDisabled, setIsInstallmentsInputDisabled] =
-    useState(false);
+  const installmentsInput = watch("installments");
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
     if (event.key === "Tab" && !event.shiftKey) {
@@ -97,11 +102,20 @@ export function CheckoutForm({ selectedOffer }: Props) {
   useEffect(() => {
     if (selectedOffer?.payment === "yearly") {
       setValue("installments", 1);
-      setIsInstallmentsInputDisabled(true);
-    } else {
-      setIsInstallmentsInputDisabled(false);
+      clearErrors("installments");
     }
   }, [selectedOffer]);
+
+  useEffect(() => {
+    if (!offerList || installmentsInput === 0) return;
+
+    const paymentType = installmentsInput === 1 ? "yearly" : "monthly";
+    const foundOffer = offerList.find((offer) => offer.payment === paymentType);
+
+    if (foundOffer) {
+      setSelectedOffer(foundOffer);
+    }
+  }, [installmentsInput, offerList]);
 
   return (
     <form
@@ -181,7 +195,6 @@ export function CheckoutForm({ selectedOffer }: Props) {
         name="installments"
         label="Número de parcelas*"
         options={installments}
-        disabled={isInstallmentsInputDisabled}
       />
 
       <Button
