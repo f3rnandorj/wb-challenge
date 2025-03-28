@@ -1,40 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Whitebook Challenge  
 
-## Getting Started
+![Cover](https://img.shields.io/badge/tech-stack-blue) ![React](https://img.shields.io/badge/React-18.2.0-%2361DAFB) ![Next.js](https://img.shields.io/badge/Next.js-15.0.0-%23000000) ![TypeScript](https://img.shields.io/badge/TypeScript-5.0.0-%233178C6)  
 
-First, run the development server:
+**Desafio Front-End** proposto pela **Afya**, que simula uma página de checkout de planos, com um formulário validado e recursos visuais e de acessibilidade que proporcionam uma experiência de usuário mais completa. O projeto foi construído com base nas referências do desafio e nas informações mencionadas na entrevista técnica, buscando aproximar ao máximo o cenário do desafio à realidade do projeto **Whitebook**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🔗 **Deploy:** [Vercel](https://wb-challenge.vercel.app/)  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## 🚀 Implementações Relevantes  
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+✅ **SEO** (Otimização para motores de busca)  
+✅ **Acessibilidade** 
+✅ **Validação de formulário** com `react-hook-form` + `Zod`  
+✅ **Feedback visual** em erros e loading  
+✅ **Testes automatizados** (Unitários, Integração, Hooks)  
+✅ **CI/CD** (GitHub Actions)  
+✅ **Deploy contínuo** (Vercel)  
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tecnologias Utilizadas  
 
-## Learn More
+| **Categoria**       | **Tecnologias**                                                                 |
+|---------------------|---------------------------------------------------------------------------------|
+| **Frontend**        | React, Next.js 15, Styled Components                                            |
+| **Gerenciamento de Estado** | Zustand, Context API                                                      |
+| **Formulários**     | React Hook Form + Zod (validação)                                               |
+| **Testes**          | Jest, Testing Library, MSW (Mock Service Worker)                                |
+| **Data Fetching**   | React Query                                                                     |
+| **Ferramentas**     | ESLint, Prettier, Husky (pre-commit), TypeScript                                |
+| **UI/Icons**        | Lucide React                                                                    |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## ⚙️ Como Instalar e Executar  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Clone o repositório**  
+   ```bash
+   git clone https://github.com/f3rnandorj/wb-challenge.git
+   cd wb-challenge
+2. **Instale as dependências**  
+   ```bash
+   yarn
+3. **Execute o projeto**  
+   ```bash
+   yarn dev
 
-## Deploy on Vercel
+Acesse: http://localhost:3000
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🧪 Ambiente de Testes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+1. **Com o projeto e as dependências instaladas, execute os testes**  
+   ```bash
+   yarn test
+2. **(Opcional) Verifique a cobertura de testes**  
+   ```bash
+   yarn coverage
+
+## Feito por **Fernando Henrique**
