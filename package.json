@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "dev:test": "jest --port 50789 --mode test",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

@@ -12,6 +12,7 @@ import {
 import { useTheme } from "styled-components";
 import { InfoRowProps, UserInfoRow } from "./components/UserInfoRow";
 import { maskUtils, stringUtils } from "@/utils";
+import Head from "next/head";
 
 export default function SuccessCheckout() {
   const { setLastSuccessCheckout, lastSuccessCheckout } = useCheckoutService();
@@ -47,78 +48,93 @@ export default function SuccessCheckout() {
   ];
 
   return (
-    <Page goBackFn={goBack}>
-      <div
-        data-testid="success-checkout-page"
-        style={{
-          display: "flex",
-          flex: 1,
-          justifyContent: "center",
-        }}
-      >
-        <MainColumn>
-          <IconContainer size="large" style={{ marginBottom: spacing.s16 }}>
-            <Icon name="check" size={40} />
-          </IconContainer>
+    <>
+      <Head>
+        <title>Sucesso | Parabéns pela aquisição do seu plano!</title>
+        <meta
+          name="description"
+          content="Compra efetuada com sucesso, aproveite!"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="keywords"
+          content="checkout, ofertas, planos, whitebook, Afya"
+        />
+      </Head>
 
-          <Text
-            style={{ marginBottom: spacing.s10 }}
-            preset="h4"
-            color="primary"
-          >
-            Parabéns!
-          </Text>
+      <Page goBackFn={goBack}>
+        <div
+          data-testid="success-checkout-page"
+          style={{
+            display: "flex",
+            flex: 1,
+            justifyContent: "center",
+          }}
+        >
+          <MainColumn>
+            <IconContainer size="large" style={{ marginBottom: spacing.s16 }}>
+              <Icon name="check" size={40} />
+            </IconContainer>
 
-          <Text style={{ marginBottom: spacing.s56 }} color="placeholder">
-            Sua assinatura foi realizada
-            <br />
-            com sucesso.
-          </Text>
+            <Text
+              style={{ marginBottom: spacing.s10 }}
+              preset="h4"
+              color="primary"
+            >
+              Parabéns!
+            </Text>
 
-          <Box>
-            <CheckoutInfoBox>
-              <IconContainer>
-                <Icon name="star" />
-              </IconContainer>
+            <Text style={{ marginBottom: spacing.s56 }} color="placeholder">
+              Sua assinatura foi realizada
+              <br />
+              com sucesso.
+            </Text>
 
-              <div style={{ textAlign: "end" }}>
-                <Text style={{ paddingBottom: spacing.s8 }}>
-                  {lastSuccessCheckout.paymentMethod}
-                </Text>
+            <Box>
+              <CheckoutInfoBox>
+                <IconContainer>
+                  <Icon name="star" />
+                </IconContainer>
 
-                <Text preset="body2">
-                  {`R$ ${lastSuccessCheckout.discountedPrice.toFixed(2)} | 
+                <div style={{ textAlign: "end" }}>
+                  <Text style={{ paddingBottom: spacing.s8 }}>
+                    {lastSuccessCheckout.paymentMethod}
+                  </Text>
+
+                  <Text preset="body2">
+                    {`R$ ${lastSuccessCheckout.discountedPrice.toFixed(2)} | 
                   ${stringUtils.formatInstallments(
                     lastSuccessCheckout.installments
                   )}`}
-                </Text>
-              </div>
-            </CheckoutInfoBox>
+                  </Text>
+                </div>
+              </CheckoutInfoBox>
 
-            <UserInfoBox>
-              {userInfo.map((item) => (
-                <UserInfoRow key={item.label} {...item} />
-              ))}
-            </UserInfoBox>
-          </Box>
+              <UserInfoBox>
+                {userInfo.map((item) => (
+                  <UserInfoRow key={item.label} {...item} />
+                ))}
+              </UserInfoBox>
+            </Box>
 
-          <Text
-            style={{ marginBottom: spacing.s24 }}
-            preset="ctaText"
-            color="primary"
-          >
-            Gerenciar assinatura
-          </Text>
+            <Text
+              style={{ marginBottom: spacing.s24 }}
+              preset="ctaText"
+              color="primary"
+            >
+              Gerenciar assinatura
+            </Text>
 
-          <Button
-            onClick={goBack}
-            title="Ir para a home"
-            style={{ width: "100%" }}
-          />
-        </MainColumn>
-      </div>
+            <Button
+              onClick={goBack}
+              title="Ir para a home"
+              style={{ width: "100%" }}
+            />
+          </MainColumn>
+        </div>
 
-      <Toast />
-    </Page>
+        <Toast />
+      </Page>
+    </>
   );
 }
