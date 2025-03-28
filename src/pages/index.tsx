@@ -31,7 +31,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="keywords"
-          content="checkout, ofertas, planos, whitebook, Afya"
+          content="checkout, ofertas, planos, whitebook, afya "
         />
       </Head>
 
@@ -61,8 +61,8 @@ export default function Home() {
               alt="Imagem com as bandeiras dos cartões de credito"
               src={creditCards}
               width={215}
-              height={50}
-              style={{ paddingBottom: spacing.s32, height: 70, width: 215 }}
+              height={85}
+              style={{ paddingBottom: spacing.s32 }}
             />
 
             <CheckoutForm selectedOffer={selectedOffer} />

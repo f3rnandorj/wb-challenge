@@ -25,13 +25,7 @@ export function MainHeader({ goBackFn }: Props) {
         <div style={{ width: spacing.s20 }} />
       )}
 
-      <Image
-        alt="logo"
-        src={logo}
-        width={42}
-        height={30}
-        style={{ width: 42, height: 30 }}
-      />
+      <Image alt="logo" src={logo} width={42} height={30} />
 
       <div style={{ width: spacing.s20 }} />
     </div>
