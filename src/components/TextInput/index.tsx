@@ -1,7 +1,7 @@
 // CardNumberInput.tsx
 import React from "react";
-import { InputField, InputWrapper } from "./styles";
-import { Text } from "@/components";
+import { Input, InputField, InputWrapper } from "./styles";
+import { Icon, IconProps, Text } from "@/components";
 import { useTheme } from "styled-components";
 
 export interface TextInputProps
@@ -9,12 +9,14 @@ export interface TextInputProps
   label?: string;
   width?: string;
   errorMessage?: string;
+  rightIcon?: IconProps;
 }
 
 export function TextInput({
   label,
   width = "100%",
   errorMessage,
+  rightIcon,
   ...textInputProps
 }: TextInputProps) {
   const { spacing } = useTheme();
@@ -31,7 +33,11 @@ export function TextInput({
         </Text>
       )}
 
-      <InputField type="text" {...textInputProps} />
+      <InputField>
+        <Input type="text" {...textInputProps} />
+
+        {rightIcon?.name && <Icon {...rightIcon} />}
+      </InputField>
 
       <Text preset="body2" color="danger">
         {errorMessage}

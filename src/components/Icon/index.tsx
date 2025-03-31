@@ -1,7 +1,5 @@
-"use client";
-
 import { useTheme, DefaultTheme } from "styled-components";
-import React from "react";
+import React, { ComponentType } from "react";
 import {
   Check,
   Star,
@@ -11,6 +9,13 @@ import {
   ChevronDown,
   Rocket,
 } from "lucide-react";
+
+import AMEX from "../../assets/creditCards/AMEX.svg";
+import dinners from "../../assets/creditCards/dinnersclub.svg";
+import elo from "../../assets/creditCards/elo.svg";
+import mastercard from "../../assets/creditCards/mastercard.svg";
+import visa from "../../assets/creditCards/visa.svg";
+import { CardBrand } from "@/utils";
 
 export type IconName = keyof typeof Icons;
 
@@ -46,7 +51,14 @@ export function Icon({
   );
 }
 
-const Icons = {
+type IconsBase = {
+  [key in CardBrand]: ComponentType<any>;
+};
+interface IconsExtended extends IconsBase {
+  [key: string]: ComponentType<any>;
+}
+
+const Icons: IconsExtended = {
   goBack: ChevronLeft,
   star: Star,
   check: Check,
@@ -54,4 +66,9 @@ const Icons = {
   arrowUp: ChevronUp,
   arrowDown: ChevronDown,
   rocket: Rocket,
+  AMEX,
+  dinners,
+  elo,
+  mastercard,
+  visa,
 };

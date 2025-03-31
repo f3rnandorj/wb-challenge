@@ -10,7 +10,7 @@ const name = z
 
 const cardNumber = z
   .string({ required_error: "Número do cartão obrigatório" })
-  .min(19, "Número do cartão incompleto")
+  .min(17, "Número do cartão incompleto")
   .transform((value) => value.replace(/\D/g, ""));
 
 const expiryDate = z

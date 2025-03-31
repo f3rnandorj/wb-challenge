@@ -5,11 +5,11 @@ export const RadioContainer = styled.div<{ isSelected: boolean }>`
   justify-content: center;
   align-items: center;
 
-  height: 16px;
-  width: 16px;
+  height: 20px;
+  width: 20px;
 
   border: ${({ isSelected, theme }) =>
-    `2px solid ${isSelected ? theme.colors.gray4 : theme.colors.gray5}`};
+    `1px solid ${isSelected ? theme.colors.gray4 : theme.colors.gray5}`};
 
   border-radius: ${({ theme }) => theme.borderRadius.s50};
 `;
@@ -17,8 +17,8 @@ export const RadioContainer = styled.div<{ isSelected: boolean }>`
 export const RadioCircle = styled.div<{ isSelected: boolean }>`
   background-color: ${({ isSelected, theme }) =>
     isSelected ? theme.colors.primary : "transparent"};
-  height: 8px;
-  width: 8px;
+  height: 11px;
+  width: 11px;
   border-radius: ${({ theme }) => theme.borderRadius.s50};
 `;
 
