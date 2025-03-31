@@ -13,7 +13,6 @@ import { CheckoutCreateParams, Offer, useCheckoutCreate } from "@/domain";
 import { useEffect } from "react";
 import { useCheckoutService } from "@/services";
 import { useRouter } from "next/router";
-import { cardTypeDetectorUtils } from "@/utils";
 
 interface Props {
   selectedOffer: Offer | undefined;
@@ -57,7 +56,6 @@ export function CheckoutForm({
     },
   });
 
-  const cardNumberInput = watch("cardNumber");
   const installmentsInput = watch("installments");
   const numberOfFieldErrors = Object.keys(formState.errors).length;
 
@@ -142,11 +140,6 @@ export function CheckoutForm({
         alt="Input para inserir número do cartão"
         maxLength={19}
         mask="cardNumber"
-        rightIcon={{
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          name: cardTypeDetectorUtils.detectCardBrand(cardNumberInput),
-        }}
       />
 
       <div style={{ display: "flex", gap: spacing.s10 }}>
