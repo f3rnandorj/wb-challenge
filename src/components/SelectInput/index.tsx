@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useTheme } from "styled-components";
 import { Icon, Text } from "@/components";
 import {
@@ -39,8 +39,13 @@ export function SelectInput({
   const selectedOption = options.find((opt) => opt.value === value);
   const displayValue = selectedOption?.label || "";
 
-  const handleToggle = () => setIsOpen(!isOpen);
-  const handleSelect = (selectedValue: string | number) => {
+  const firstOptionRef = useRef<HTMLLIElement>(null);
+
+  function handleToggle() {
+    setIsOpen(!isOpen);
+  }
+
+  function handleSelect(selectedValue: string | number) {
     if (onChange) {
       const event = {
         target: { value: selectedValue },
@@ -48,7 +53,66 @@ export function SelectInput({
       onChange(event);
     }
     setIsOpen(false);
-  };
+  }
+
+  function handleOnClick(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    if (onClick) {
+      onClick(event);
+    } else {
+      setIsOpen(!isOpen);
+    }
+  }
+
+  function handleListItemKeyDown(
+    e: React.KeyboardEvent<HTMLLIElement>,
+    optionValue: string | number,
+    index: number
+  ) {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleSelect(optionValue);
+    }
+
+    if (e.key === "Tab") {
+      if (
+        (!e.shiftKey && options.length - 1 === index) ||
+        (e.shiftKey && index === 0)
+      ) {
+        e.preventDefault();
+        setIsOpen(false);
+        selectRef.current?.focus();
+      }
+    }
+
+    if (e.key === "ArrowDown" && index < options.length - 1) {
+      e.preventDefault();
+      const nextOption = document.querySelector<HTMLLIElement>(
+        `[data-option-index="${index + 1}"]`
+      );
+      nextOption?.focus();
+    }
+
+    if (e.key === "ArrowUp" && index > 0) {
+      e.preventDefault();
+      const prevOption = document.querySelector<HTMLLIElement>(
+        `[data-option-index="${index - 1}"]`
+      );
+      prevOption?.focus();
+    }
+
+    if (e.key === "Escape") {
+      e.preventDefault();
+      setIsOpen(false);
+    }
+  }
+
+  useEffect(() => {
+    if (isOpen && firstOptionRef.current) {
+      firstOptionRef.current.focus();
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -68,7 +132,7 @@ export function SelectInput({
       disabled={disabled}
       width={width}
       data-testid="select-input-button"
-      onClick={() => onClick || setIsOpen(!isOpen)}
+      onClick={handleOnClick}
       data-is-select-open={isOpen}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -103,10 +167,16 @@ export function SelectInput({
       </CustomSelect>
 
       <SelectDropdown isOpen={isOpen}>
-        {options.map((option) => (
+        {options.map((option, index) => (
           <SelectOption
             key={option.value.toString()}
             onClick={() => handleSelect(option.value)}
+            onKeyDown={(e) => handleListItemKeyDown(e, option.value, index)}
+            ref={index === 0 ? firstOptionRef : null}
+            tabIndex={isOpen ? 0 : -1}
+            role="option"
+            aria-selected={option.value === value}
+            data-option-index={index}
           >
             {option.label}
           </SelectOption>

@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const SelectDropdown = styled.ul<{ isOpen: boolean }>`
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   position: absolute;
-  top: 85%;
+  top: 100%;
   left: 0;
   right: 0;
 
@@ -28,6 +28,11 @@ export const SelectOption = styled.li`
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.gray6};
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid ${({ theme }) => theme.colors.secondary};
   }
 `;
 

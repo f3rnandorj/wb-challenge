@@ -32,6 +32,7 @@ export function CheckoutForm({
       defaultValues: {
         installments: 0,
       },
+      delayError: 1000,
     });
 
   const { showToast } = useToast();
@@ -198,6 +199,7 @@ export function CheckoutForm({
         name="installments"
         label="Número de parcelas*"
         options={installments}
+        aria-label="Select com as opções de parcelamento"
       />
 
       <Button
@@ -207,6 +209,7 @@ export function CheckoutForm({
         textColor="grayWhite"
         disabled={false}
         isLoading={isLoading}
+        aria-label="Botão para enviar formulário"
       />
     </form>
   );

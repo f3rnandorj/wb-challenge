@@ -10,6 +10,8 @@ export const ButtonContainer = styled.button`
   align-items: center;
   justify-content: center;
 
+  height: 3.3rem;
+
   background-color: ${({ theme }) => theme.colors.primary};
   padding: ${({ theme }) => `${theme.spacing.s16} ${theme.spacing.s40}`};
 
@@ -45,8 +47,8 @@ export const Spinner = styled.div`
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   border-top-color: ${({ theme }) => theme.font.colors.grayWhite};
-  width: 20px;
-  height: 20px;
+  width: ${({ theme }) => theme.spacing.s20};
+  height: ${({ theme }) => theme.spacing.s20};
   animation: ${spin} 1s ease-in-out infinite;
   margin: 0 auto;
 `;
